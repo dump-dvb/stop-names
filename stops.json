@@ -213,7 +213,7 @@
     "552": {
         "name": "Zellescher Weg",
         "lat": 51.0284316,
-        "lot": 13.7459510
+        "lon": 13.7459510
     },
     "604": {
         "name": "Nürnberger/Budapester Str.",
@@ -257,8 +257,8 @@
     },
     "1151": {
         "name": "Bischofsplatz",
-        "lat": "51.071993",
-        "lon": "13.746973"
+        "lat": 51.071993,
+        "lon": 13.746973
     },
     "1104": {
         "name": "Staufenbergallee",
@@ -349,43 +349,43 @@
     },
     "1504": {
         "name": "Dresden Grossenhainer Platz",
-        "lat": "51.074117",
-        "lon": "13.738611"
+        "lat": 51.074117,
+        "lon": 13.738611
     },
     "1404": {
         "name": "Dresden Grossenhainer Strasse / Frintz-Reuter-Strasse",
-        "lat": "51.075230",
-        "lon": "13.734514"
+        "lat": 51.075230,
+        "lon": 13.734514
     },
     "1270": {
         "name": "Stauffenbergalle / Hans-Oster-Strasse",
-        "lat": "51.075896",
-        "lon": "13.757962"
+        "lat": 51.075896,
+        "lon": 13.757962
     },
     "1293": {
-        "name": "Hans-Oster-Strasse",
-        "lat": "51.074884",
-        "lon": "13.760771"
+        "name":"Hans-Oster-Strasse",
+        "lat": 51.074884,
+        "lon": 13.760771
     },
     "1257": {
-        "name": "Marienallee",
-        "lat": "51.073226",
-        "lon": "13.765502"
+        "name":"Marienallee",
+        "lat": 51.073226,
+        "lon": 13.765502
     },
     "1271": {
-        "name": "Landesdirektion Sachsen",
-        "lat": "51.071685",
-        "lon": "13.770473"
+        "name":"Landesdirektion Sachsen",
+        "lat": 51.071685,
+        "lon": 13.770473
     },
     "1258": {
-        "name": "Waldschloesschenstrasse",
-        "lat": "51.069858",
-        "lon": "13.775674"
+        "name":"Waldschloesschenstrasse",
+        "lat": 51.069858,
+        "lon": 13.775674
     },
     "1206": {
-        "name": "Waldschloesschen",
-        "lat": "51.067329",
-        "lon": "13.776489"
+        "name":"Waldschloesschen",
+        "lat": 51.067329,
+        "lon": 13.776489
     },
     "1276": {
         "name": "Jaegerpark Heideblick",

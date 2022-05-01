@@ -75,6 +75,16 @@
         "lat": 51.057410,
         "lon": 13.745794
     },
+    "206": {
+        "name": "Neustädter Markt",
+        "lat": 51.057757,
+        "lon": 13.741322
+    };
+    "207": {
+        "name": "Robert-Blum-Straße / Große Meißner Str.",
+        "lat": 51.061568,
+        "lon": 13.737761
+    },
     "208": {
         "name": "Bodenbacher / Zwinglistraße",
         "lat": 51.033500,

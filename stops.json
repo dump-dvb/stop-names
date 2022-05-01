@@ -1,111 +1,111 @@
 {
     "102": {
         "name": "LSA Anton-/Leipziger Straße",
-        "lat": 
-        "lon":
+        "lat": 51.063033,
+        "lon": 13.736958
     },
     "103": {
         "name": "Anton-/Zur Eisenbahnstraße",
-		"lat":
-		"lon":
+		"lat": 51.064067,
+		"lon": 13.736935
 	},
     "104": {
 		"name": "Schlesischer Platz",
-		"lat":
-		"lon":
+		"lat": 51.064783,
+		"lon": 13.740362
 	},
     "107": {
 		"name": "Albertplatz",
-		"lat":
-		"lon":
+		"lat": 51.063252,
+		"lon": 13.746367
 	},
     "108": {
 		"name": "Albertplatz West",
-		"lat":
-		"lon":
+		"lat": 51.064241,
+		"lon": 13.744951
 	},
     "109": {
 		"name": "Bautzner/Rothenburger",
-		"lat":
-		"lon":
+		"lat": 51.062925,
+		"lon": 13.751871
 	},
     "119": {
 		"name": "Straßburger Platz",
-		"lat":
-		"lon":
+		"lat": 51.046078,
+		"lon": 13.754815
 	},
     "120": {
 		"name": "Lennéstraße/Hauptallee",
-		"lat":
-		"lon":
+		"lat": 51.042455,
+		"lon": 13.751296
 	},
     "121": {
 		"name": "Lennéplatz",
-		"lat":
-		"lon":
+		"lat": 51.038294,
+		"lon": 13.746646
 	},
     "136": {
 		"name": "Könneritzstraße/Jahnstraße",
-		"lat":
-		"lon":
+		"lat": 51.055101,
+		"lon": 13.723554
 	},
 
     "200": {
 		"name": "Synagoge",
-		"lat":
-		"lon":
+		"lat": 51.052611,
+		"lon": 13.747128
 	},
     "201": {
 		"name": "St. Petersburger Straße/Pulmann-Newa",
-		"lat":
-		"lon":
+		"lat": 51.042306,
+		"lon": 13.736348
 	},
     "203": {
 		"name": "Pirnaischer Platz",
-		"lat":
-		"lon":
+		"lat": 51.049434,
+		"lon": 13.744379
 	},
     "204": {
 		"name": "Rathenauplatz",
-		"lat":
-		"lon":
+		"lat": 51.051463,
+		"lon": 13.747008
 	},
     "205": {
 		"name": "Carolaplatz",
-		"lat":
-		"lon":
+		"lat": 51.057410,
+		"lon": 13.745794
 	},
     "208": {
 		"name": "Bodenbacher / Zwinglistraße",
-		"lat":
-		"lon":
+		"lat": 51.033500,
+		"lon": 13.782810
 	},
     "268": {
 		"name": "Albertplatz Süd",
-		"lat":
-		"lon":
+		"lat": 51.061454,
+		"lon": 13.746032
 	},
 
     "324": {
 		"name": "Fetscherplatz",
-		"lat":
-		"lon":
+		"lat": 51.046367,
+		"lon": 13.770653
 	},
     "346": {
 		"name": "Schillerplatz",
-		"lat":
-		"lon":
+		"lat": 51.052175,
+		"lon": 13.805205
 	},
     "363": {
 		"name": "Blasewitzer /Fetscherstraße",
-		"lat":
-		"lon":
+		"lat": 51.052881,
+		"lon": 13.777738
 	},
 
     "421": {
 		"name": "Wasaplatz",
-		"lat":
-		"lon":
+		"lat": 51.027979,
+		"lon": 13.759444
 	},
     "429": {
 		"name": "Moränenende/Breitscheidstraße",

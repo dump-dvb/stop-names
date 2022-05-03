@@ -511,5 +511,70 @@
         "name": "Dresden Pennricher Strasse",
         "lat": 51.049138,
         "lon": 13.692045
+    },
+    "139": {
+        "name": "Dresden Kongresszentrum",
+        "lat": 51.057972,
+        "lon": 13.727255
+    },
+    "138": {
+        "name": "Maxstrasse / Koenneritzstr.",
+        "lat": 51.057033,
+        "lon": 13.726101
+    },
+    "135": {
+        "name": "Koenneritzstr. / Schweriner Str.",
+        "lat": 51.054075,
+        "lon": 13.722238
+    },
+    "133": {
+        "name": "Ammonstrasse / Freiberger Str.",
+        "lat": 51.049358,
+        "lon": 13.720690
+    },
+    "134": {
+        "name": "Koenneritzstr. / Ammonstrasse",
+        "lat": 51.051675,
+        "lon": 13.720342
+    },
+    "280": {
+        "name": "Freiberger Str. / Tiefgarage WTC",
+        "lat": 51.049675,
+        "lon": 13.722087
+    },
+    "234": {
+        "name": "Freiberger Str. / Freiberger Platz",
+        "lat": 51.050296,
+        "lon": 13.725170
+    },
+    "220": {
+        "name": "Freiberger Str. / Hertha-Lindner-Strasse",
+        "lat": 51.050873,
+        "lon": 13.729145
+    },
+    "222": {
+        "name": "Postplatz",
+        "lat": 51.050872,
+        "lon": 13.733433
+    },
+    "219": {
+        "name": "Schweriner Str. / Hertha-Lindner-Strasse",
+        "lat": 51.052070,
+        "lon": 13.728905
+    },
+    "233": {
+        "name": "Wettiner Platz",
+        "lat": 51.053502,
+        "lon": 13.724363
+    },
+    "223": {
+        "name": "Wilsdruffer Str. / Schlossstr.",
+        "lat": 51.050486,
+        "lon": 13.737083
+    },
+    "299": {
+        "name": "Wilsdruffer Str. / Galeriestr.",
+        "lat": 51.050153,
+        "lon": 13.739090
     }
 }

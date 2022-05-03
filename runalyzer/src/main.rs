@@ -1,11 +1,14 @@
 use std::collections::HashMap;
 use std::error::Error;
-use std::time::{Duration, SystemTime};
+use std::time::SystemTime;
 use serde::Deserialize;
 
 const JUNCTION_MAX_DURATION: u64 = 20 * 60;
+const STOP_MAX_DIFF: usize = 5;
 
+mod telegram;
 mod osm_lines;
+mod known_stops;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct LineRun {
@@ -22,52 +25,29 @@ pub struct Run(u16);
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
 pub struct Junction(u32);
 
-#[derive(Debug, Clone, Deserialize)]
-struct Telegram {
-    time_stamp: u64,
-    // lat: f64,
-    // lon: f64,
-    // station_id: u64,
-    line: Line,
-    // destination_number: u64,
-    // priority: (),
-    // sign_of_deviation: (),
-    // value_of_deviation: (),
-    // reporting_point: (),
-    // request_for_priority: (),
-    run_number: Run,
-    // reserve: (),
-    // train_length: (),
-    junction: Junction,
-    // junction_number: u16,
-}
-
-fn read_telegrams(path: &str) -> Result<HashMap<LineRun, Vec<(SystemTime, Junction)>>, Box<dyn Error>> {
-    let mut by_run: HashMap<LineRun, Vec<(SystemTime, Junction)>> = HashMap::new();
-    for result in csv::Reader::from_path(path)?.deserialize::<Telegram>() {
-        match result {
-            Err(e) => {
-                eprintln!("Parse error: {}", e);
-            }
-            Ok(telegram) => {
-                let line_run = LineRun { line: telegram.line, run: telegram.run_number };
-                let time = SystemTime::UNIX_EPOCH + Duration::from_secs(telegram.time_stamp);
-                by_run.entry(line_run)
-                    .or_default()
-                    .push((time, telegram.junction));
+fn main() -> Result<(), Box<dyn Error>> {
+    println!("loading known stops");
+    let stops = known_stops::load("../stops.json")?;
+    let get_stop = |s| {
+        if let Some(stop) = stops.get(s) {
+            Some(stop)
+        } else if Some(stop) = stops.iter().min_by_key(|stop| levenshtein(s, stop.name)) {
+            if levenshtein(s, stop.name) <= STOP_MAX_DIFF {
+                Some(stop)
+            } else {
+                None
             }
         }
-    }
-
-    Ok(by_run)
-}
-
-fn main() -> Result<(), Box<dyn Error>> {
-    let mut stamps_by_run = read_telegrams("../../old1.csv")?;
+    };
+    
+    println!("reading telegrams");
+    let mut stamps_by_run = telegram::read_telegrams("../../old1.csv")?;
+    println!("sorting {} telegrams", stamps_by_run.len());
     for stamps in stamps_by_run.values_mut() {
         stamps.sort();
     }
 
+    println!("collecting minimal durations");
     let durations_by_run = stamps_by_run.into_iter()
         .map(|(line_run, stamps)| {
             let mut last_stamp: Option<(SystemTime, Junction)> = None;
@@ -96,8 +76,25 @@ fn main() -> Result<(), Box<dyn Error>> {
         .collect::<HashMap<_, _>>();
     // dbg!(durations_by_run.keys().map(|lr|lr.line).collect::<Vec<_>>());
 
-    let lines = osm_lines::read("trams.json")?;
-    // dbg!(lines);
+    println!("processing osm data");
+    let mut lines = HashMap::<Line, Vec<osm_lines::LineInfo>>::new();
+    for line_info in osm_lines::read("trams.json")?.into_iter()
+        .chain(osm_lines::read("buses.json")?.into_iter())
+    {
+        lines.entry(line_info.line)
+            .or_default()
+            .push(line_info);
+    }
+
+    let mut line_junctions = vec![];
+    for (line, line_infos) in lines.into_iter() {
+        let mut junctions = [];
+        for line_info in line_infos {
+            // find known stops
+        }
+        line_junctions.push(junctions);
+    }
+    dbg!(line_junctions);
     
     Ok(())
 }

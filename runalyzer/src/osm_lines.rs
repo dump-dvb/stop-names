@@ -65,6 +65,11 @@ pub struct LineInfo {
     pub ways: Vec<Vec<Waypoint>>,
 }
 
+impl LineInfo {
+    fn nearest_point_on_way(&self, lat: f64, lon: f64) {
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct Waypoint {
     pub id: Id,
@@ -158,7 +163,9 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
             RecordType::Relation => {
                 if let (Some(members), Some(tags)) = (&record.members, &record.tags) {
                     if [Some("route")].contains(&tags.get("type").map(|s| s.as_str())) && [Some("tram"), Some("bus")].contains(&tags.get("route").map(|s| s.as_str())) {
-                        let line = Line(str::parse(tags.get("ref").expect("line ref"))?);
+                        let line = str::parse(tags.get("ref").expect("line ref"))
+                            .ok()
+                            .map(Line);
                         let stops = if let Some(members) = &record.members {
                             members.iter().filter(|member| member.role == "stop")
                                 .filter_map(|member| {
@@ -190,15 +197,18 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                         } else {
                             vec![]
                         };
-                        let mut info = LineInfo {
-                            line,
-                            name: tags.get("name").expect("line name").clone(),
-                            stops,
-                            ways,
-                        };
-                        info.reorder_ways();
-                        info.detect_discontiguity();
-                        infos.push(info);
+                        if let Some(line) = line {
+                            let mut info = LineInfo {
+                                line,
+                                name: tags.get("name").map(|s| s.to_string())
+                                    .unwrap_or_else(|| format!("Linie {}", line.0)),
+                                stops,
+                                ways,
+                            };
+                            info.reorder_ways();
+                            info.detect_discontiguity();
+                            infos.push(info);
+                        }
                     }
                 }
             }

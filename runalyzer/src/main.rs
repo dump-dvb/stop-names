@@ -2,9 +2,9 @@ use std::collections::HashMap;
 use std::error::Error;
 use std::time::SystemTime;
 use serde::Deserialize;
+use geo::{coord, LineString, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
 
 const JUNCTION_MAX_DURATION: u64 = 20 * 60;
-const STOP_MAX_DIFF: usize = 5;
 
 mod telegram;
 mod osm_lines;
@@ -28,17 +28,7 @@ pub struct Junction(u32);
 fn main() -> Result<(), Box<dyn Error>> {
     println!("loading known stops");
     let stops = known_stops::load("../stops.json")?;
-    let get_stop = |s| {
-        if let Some(stop) = stops.get(s) {
-            Some(stop)
-        } else if Some(stop) = stops.iter().min_by_key(|stop| levenshtein(s, stop.name)) {
-            if levenshtein(s, stop.name) <= STOP_MAX_DIFF {
-                Some(stop)
-            } else {
-                None
-            }
-        }
-    };
+    println!("{} stops loaded", stops.len());
     
     println!("reading telegrams");
     let mut stamps_by_run = telegram::read_telegrams("../../old1.csv")?;
@@ -88,13 +78,55 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let mut line_junctions = vec![];
     for (line, line_infos) in lines.into_iter() {
-        let mut junctions = [];
+        println!("tracing junctions of line {}", line.0);
+        let mut junctions = vec![()];
         for line_info in line_infos {
-            // find known stops
+            let known_stops = stops.iter().filter_map(|(junction, stop)| {
+                dbg!(&junction);
+                let known_point = Point::new(stop.lon, stop.lat);
+                dbg!(line_info.ways.len());
+                line_info.ways.iter()
+                    .filter_map(|way| {
+                        let line = LineString::new(
+                            way.iter().map(|waypoint| coord! {
+                                x: waypoint.lon,
+                                y: waypoint.lat,
+                            }).collect()
+                        );
+                        match line.closest_point(&known_point) {
+                            Closest::Intersection(p) => {
+                                Some((known_point.euclidean_distance(&p), p, line))
+                            }
+                            Closest::SinglePoint(p) => {
+                                Some((known_point.euclidean_distance(&p), p, line))
+                            }
+                            Closest::Indeterminate => None,
+                        }
+                    }).min_by(|(d1, _, _), (d2, _, _)| {
+                        use std::cmp::Ordering;
+                        if d1 < d2 {
+                            Ordering::Less
+                        } else if d1 > d2 {
+                            Ordering::Greater
+                        } else {
+                            Ordering::Equal
+                        }
+                    })
+                    .and_then(|closest_point| {
+                        if closest_point.0 < 0.01 {
+                            Some(closest_point)
+                        } else {
+                            None
+                        }
+                    }).map(|closest_point| {
+                        (junction, closest_point.1)
+                    })
+            }).collect::<HashMap<_, _>>();
+            dbg!(known_stops);
         }
-        line_junctions.push(junctions);
+        line_junctions.push((line, junctions));
     }
-    dbg!(line_junctions);
+    // dbg!(line_junctions);
     
     Ok(())
 }

@@ -4,9 +4,9 @@ use super::*;
 
 #[derive(Debug, Deserialize)]
 pub struct Stop {
-    name: String,
-    lat: f64,
-    lon: f64,
+    pub name: String,
+    pub lat: f64,
+    pub lon: f64,
 }
 
 pub fn load(path: &str) -> Result<HashMap<u32, Stop>, Box<dyn Error>> {

@@ -35,18 +35,18 @@ struct Record {
     tags: Option<HashMap<String, String>>,
 }
 
-impl Record {
-    fn line_stop(&self) -> Option<LineStop> {
-        if self.record_type != RecordType::Node {
-            println!("stop is not a node: {:?}", self);
-        }
-        Some(LineStop {
-            name: self.tags.as_ref()?.get("name")?.to_string(),
-            lat: self.lat?,
-            lon: self.lon?,
-        })
-    }
-}
+// impl Record {
+//     fn line_stop(&self) -> Option<LineStop> {
+//         if self.record_type != RecordType::Node {
+//             println!("stop is not a node: {:?}", self);
+//         }
+//         Some(LineStop {
+//             name: self.tags.as_ref()?.get("name")?.to_string(),
+//             lat: self.lat?,
+//             lon: self.lon?,
+//         })
+//     }
+// }
 
 #[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
 struct RelationMember {
@@ -61,13 +61,8 @@ struct RelationMember {
 pub struct LineInfo {
     pub line: Line,
     pub name: String,
-    pub stops: Vec<LineStop>,
+    // pub stops: Vec<LineStop>,
     pub ways: Vec<Vec<Waypoint>>,
-}
-
-impl LineInfo {
-    fn nearest_point_on_way(&self, lat: f64, lon: f64) {
-    }
 }
 
 #[derive(Debug, Clone)]
@@ -166,15 +161,15 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                         let line = str::parse(tags.get("ref").expect("line ref"))
                             .ok()
                             .map(Line);
-                        let stops = if let Some(members) = &record.members {
-                            members.iter().filter(|member| member.role == "stop")
-                                .filter_map(|member| {
-                                    records.get(&(member.record_type, member.record_ref))
-                                        .and_then(|record| record.line_stop())
-                                }).collect()
-                        } else {
-                            vec![]
-                        };
+                        // let stops = if let Some(members) = &record.members {
+                        //     members.iter().filter(|member| member.role == "stop")
+                        //         .filter_map(|member| {
+                        //             records.get(&(member.record_type, member.record_ref))
+                        //                 .and_then(|record| record.line_stop())
+                        //         }).collect()
+                        // } else {
+                        //     vec![]
+                        // };
                         let ways = if let Some(members) = &record.members {
                             members.iter().filter(|member| member.record_type == RecordType::Way && member.role == "")
                                 .map(|member| {
@@ -202,7 +197,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                 line,
                                 name: tags.get("name").map(|s| s.to_string())
                                     .unwrap_or_else(|| format!("Linie {}", line.0)),
-                                stops,
+                                // stops,
                                 ways,
                             };
                             info.reorder_ways();

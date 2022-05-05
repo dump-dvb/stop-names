@@ -144,10 +144,12 @@ pub struct LineStop {
 }
 
 pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
+    println!("reading osm export {}", path);
     let mut infos = vec![];
 
     let file = File::open(path)?;
     let json: OverpassJson = serde_json::from_reader(file)?;
+    println!("{} osm primitives", json.elements.len());
 
     let records = json.elements.iter()
         .map(|record| ((record.record_type, record.id), record))
@@ -161,42 +163,43 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                         let line = str::parse(tags.get("ref").expect("line ref"))
                             .ok()
                             .map(Line);
-                        // let stops = if let Some(members) = &record.members {
-                        //     members.iter().filter(|member| member.role == "stop")
-                        //         .filter_map(|member| {
-                        //             records.get(&(member.record_type, member.record_ref))
-                        //                 .and_then(|record| record.line_stop())
-                        //         }).collect()
-                        // } else {
-                        //     vec![]
-                        // };
-                        let ways = if let Some(members) = &record.members {
-                            members.iter().filter(|member| member.record_type == RecordType::Way && member.role == "")
-                                .map(|member| {
-                                    records.get(&(member.record_type, member.record_ref))
-                                        .expect("way")
-                                })
-                                .map(|way| {
-                                    way.nodes.as_ref().expect("way.nodes")
-                                        .iter().map(|id| {
-                                            records.get(&(RecordType::Node, *id))
-                                                .map(|record| Waypoint {
-                                                    id: *id,
-                                                    lat: record.lat.expect("lat"),
-                                                    lon: record.lon.expect("lon"),
-                                                })
-                                                .expect("way node")
-                                        }).collect()
-                                })
-                                .collect()
-                        } else {
-                            vec![]
-                        };
                         if let Some(line) = line {
+                            let name = tags.get("name").map(|s| s.to_string())
+                                .unwrap_or_else(|| format!("Linie {}", line.0));
+                            // let stops = if let Some(members) = &record.members {
+                            //     members.iter().filter(|member| member.role == "stop")
+                            //         .filter_map(|member| {
+                            //             records.get(&(member.record_type, member.record_ref))
+                            //                 .and_then(|record| record.line_stop())
+                            //         }).collect()
+                            // } else {
+                            //     vec![]
+                            // };
+                            let ways = if let Some(members) = &record.members {
+                                members.iter().filter(|member| member.record_type == RecordType::Way && member.role == "")
+                                    .map(|member| {
+                                        records.get(&(member.record_type, member.record_ref))
+                                            .expect("way")
+                                    })
+                                    .map(|way| {
+                                        way.nodes.as_ref().expect("way.nodes")
+                                            .iter().map(|id| {
+                                                records.get(&(RecordType::Node, *id))
+                                                    .map(|record| Waypoint {
+                                                        id: *id,
+                                                        lat: record.lat.expect("lat"),
+                                                        lon: record.lon.expect("lon"),
+                                                    })
+                                                    .expect("way node")
+                                            }).collect()
+                                    })
+                                    .collect()
+                            } else {
+                                vec![]
+                            };
                             let mut info = LineInfo {
                                 line,
-                                name: tags.get("name").map(|s| s.to_string())
-                                    .unwrap_or_else(|| format!("Linie {}", line.0)),
+                                name,
                                 // stops,
                                 ways,
                             };

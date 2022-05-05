@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::error::Error;
-use std::time::SystemTime;
+use std::time::{Duration, SystemTime};
 use serde::Deserialize;
 use geo::{coord, LineString, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
 
@@ -64,9 +64,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             (line_run, durations)
         })
         .collect::<HashMap<_, _>>();
-    // dbg!(durations_by_run.keys().map(|lr|lr.line).collect::<Vec<_>>());
 
-    println!("processing osm data");
     let mut lines = HashMap::<Line, Vec<osm_lines::LineInfo>>::new();
     for line_info in osm_lines::read("trams.json")?.into_iter()
         .chain(osm_lines::read("buses.json")?.into_iter())
@@ -76,15 +74,11 @@ fn main() -> Result<(), Box<dyn Error>> {
             .push(line_info);
     }
 
-    let mut line_junctions = vec![];
     for (line, line_infos) in lines.into_iter() {
         println!("tracing junctions of line {}", line.0);
-        let mut junctions = vec![()];
         for line_info in line_infos {
             let known_stops = stops.iter().filter_map(|(junction, stop)| {
-                dbg!(&junction);
                 let known_point = Point::new(stop.lon, stop.lat);
-                dbg!(line_info.ways.len());
                 line_info.ways.iter()
                     .filter_map(|way| {
                         let line = LineString::new(
@@ -113,7 +107,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         }
                     })
                     .and_then(|closest_point| {
-                        if closest_point.0 < 0.01 {
+                        if closest_point.0 < 0.0001 {
                             Some(closest_point)
                         } else {
                             None
@@ -121,12 +115,14 @@ fn main() -> Result<(), Box<dyn Error>> {
                     }).map(|closest_point| {
                         (junction, closest_point.1)
                     })
-            }).collect::<HashMap<_, _>>();
-            dbg!(known_stops);
+            }).collect::<Vec<_>>();
+            println!("Found {} known stops in {}", known_stops.len(), line_info.name);
+
+            // println!("matching known durations to known stops");
+            // for (line_run, duration) in durations_by_run.into_iter() {
+            // }
         }
-        line_junctions.push((line, junctions));
     }
-    // dbg!(line_junctions);
     
     Ok(())
 }

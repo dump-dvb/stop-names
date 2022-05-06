@@ -66,8 +66,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         .collect::<HashMap<_, _>>();
 
     let mut lines = HashMap::<Line, Vec<osm_lines::LineInfo>>::new();
-    for line_info in osm_lines::read("trams.json")?.into_iter()
-        .chain(osm_lines::read("buses.json")?.into_iter())
+    for line_info in osm_lines::read("../trams.json")?.into_iter()
+        .chain(osm_lines::read("../buses.json")?.into_iter())
     {
         lines.entry(line_info.line)
             .or_default()

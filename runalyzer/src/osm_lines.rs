@@ -1,5 +1,6 @@
 use std::fs::File;
 use serde::Deserialize;
+use geo::{prelude::GeodesicDistance, Point};
 use super::{Error, HashMap, Line};
 
 #[derive(Debug, Deserialize)]
@@ -81,7 +82,7 @@ impl PartialEq for Waypoint {
 impl Eq for Waypoint {}
 
 impl LineInfo {
-    fn detect_discontiguity(&self) {
+    fn detect_discontiguity(&self) -> bool {
         let mut discontiguities = 0;
         for i in 1..self.ways.len() {
             if !self.ways[i - 1].is_empty() &&
@@ -94,6 +95,9 @@ impl LineInfo {
         }
         if discontiguities > 0 {
             eprintln!("Line {}: {:?} contains {} discontiguities", self.line.0, self.name, discontiguities);
+            true
+        } else {
+            false
         }
     }
 
@@ -127,6 +131,69 @@ impl LineInfo {
                         false
                     } else {
                         true
+                    }
+                });
+            }
+            all_ways.push(ways);
+        }
+        self.ways = all_ways;
+    }
+
+    pub fn glue_ways(&mut self) {
+        let mut all_ways = vec![];
+        while !self.ways.is_empty() {
+            let mut ways = self.ways.remove(0);
+
+            let mut done = false;
+            while !done {
+                done = true;
+
+                self.ways.retain(|way| {
+                    fn dist(n: usize, w1: &Waypoint, w2: &Waypoint) -> (f64, usize) {
+                        let distance = Point::new(w1.lon, w1.lat)
+                            .geodesic_distance(&Point::new(w2.lon, w2.lat));
+                        (distance, n)
+                    }
+                    let min_dist = [
+                        dist(0, &way[0], &ways[ways.len() - 1]),
+                        dist(1, &way[way.len() - 1], &ways[0]),
+                        dist(2, &way[0], &ways[0]),
+                        dist(3, &way[way.len() - 1], &ways[ways.len() - 1]),
+                    ].iter().min_by(|(d1, _), (d2, _)| {
+                        use std::cmp::Ordering;
+                        if d1 < d2 {
+                            Ordering::Less
+                        } else if d1 > d2 {
+                            Ordering::Greater
+                        } else {
+                            Ordering::Equal
+                        }
+                    }).map(|(_, n)| *n)
+                        .unwrap();
+                    match min_dist {
+                        0 => {
+                            ways.extend_from_slice(way);
+                            done = false;
+                            false
+                        }
+                        1 => {
+                            ways = way.iter().chain(ways.iter()).cloned().collect();
+                            done = false;
+                            false
+                        }
+                        2 => {
+                            ways = way.iter().rev().chain(ways.iter()).cloned().collect();
+                            done = false;
+                            false
+                        }
+                        3 => {
+                            for waypoint in way.iter().rev() {
+                                ways.push(waypoint.clone());
+                            }
+                            done = false;
+                            false
+                        }
+                        _ => unreachable!(),
                     }
                 });
             }
@@ -202,7 +269,11 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             ways,
                         };
                         info.reorder_ways();
-                        info.detect_discontiguity();
+                        if info.detect_discontiguity() {
+                            println!("gluing");
+                            info.glue_ways();
+                            info.detect_discontiguity();
+                        }
                         infos.push(info);
                         // TODO: reverse depending on stop_exit_only
                     }

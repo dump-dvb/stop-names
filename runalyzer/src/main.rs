@@ -161,7 +161,14 @@ fn main() -> Result<(), Box<dyn Error>> {
 
                     last = Some((junction, point));
                     result
-                });
+                }).collect::<Vec<_>>();
+            let new_junctions: usize = known_stop_segments.iter().map(|segment|
+                segment.junctions.iter().filter(|(_, junction)|
+                    *junction != segment.start.0 &&
+                    *junction != segment.stop.0
+                ).count()
+            ).sum();
+            println!("Adding {} new junctions to {:?} ways", new_junctions, line_info.ways.iter().map(|way| way.len()).collect::<Vec<_>>());
             let segment_results = known_stop_segments.into_iter()
                 .flat_map(|segment| segments::segmentize(&segment, &line_info.ways))
                 .collect::<Vec<_>>();

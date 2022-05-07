@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use std::time::{Duration, SystemTime};
-use geo::{prelude::{Contains, GeodesicDistance, GeodesicLength}, LineString, Point, coord};
+use geo::{prelude::{EuclideanDistance, GeodesicDistance, GeodesicLength}, LineString, Point, coord};
 use serde::{Serialize, Serializer, ser::{SerializeStruct, SerializeTuple}};
 use super::osm_lines::Waypoint;
 use super::{Closest, ClosestPoint, Junction, LineRun};
@@ -118,9 +118,12 @@ pub fn way_point(ways: &[Vec<Waypoint>], known_point: &Point<f64>) -> Option<(us
 }
 
 fn split_linestring_at_point(linestring: LineString<f64>, point: &Point<f64>) -> (LineString<f64>, LineString<f64>) {
+    let mut min_dist = None;
     let mut line_index = None;
     for (index, line) in linestring.lines().enumerate() {
-        if line.contains(&point.0) {
+        let dist = line.euclidean_distance(&point.0);
+        if min_dist.map(|min_dist| dist < min_dist).unwrap_or(true) {
+            min_dist = Some(dist);
             line_index = Some(index);
         }
     }

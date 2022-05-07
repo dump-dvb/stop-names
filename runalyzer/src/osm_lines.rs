@@ -291,7 +291,6 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                         } else {
                             vec![]
                         };
-                        dbg!(&exit_points);
                         let distance_to_exit = |way: &Waypoint| exit_points.iter()
                             .map(|line_stop| {
                                 Point::new(way.lon, way.lat)
@@ -314,7 +313,10 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                     println!("Reversing ({:.0}m > {:.0}m)", head_to_exit, tail_to_exit);
                                     ways.reverse();
                                 }
-                                _ => {}
+                                (Some(_), Some(_)) => {}
+                                _ => {
+                                    println!("Trouble finding exits for {}", line.0);
+                                }
                             }
                         }
 

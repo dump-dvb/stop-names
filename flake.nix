@@ -22,11 +22,25 @@
         cargo = rust;
         rustc = rust;
       };
+
+      telegramsDump = pkgs.fetchurl {
+        url = "https://files.dvb.solutions/mapping-run-20220507/telegrams-20220507-2205.csv";
+        sha256 = "1hj4hx0p5qrh2p8zm6sbxdbyj2y77xl1wmb7pbpf9y206jhb2fqz";
+      };
     in rec {
       # `nix build`
       packages.runalyzer = naersk-lib.buildPackage {
         pname = "runalyzer";
         src = ./runalyzer;
+        overrideMain = attrs: {
+          patchPhase = ''
+            substituteInPlace src/main.rs \
+              --replace ../stops.json ${./stops.json} \
+              --replace ../trams.json ${./trams.json} \
+              --replace ../buses.json ${./buses.json} \
+              --replace ../formatted.csv ${telegramsDump}
+          '';
+        };
         doCheck = true;
         cargoTestCommands = x:
           x ++ [
@@ -34,12 +48,18 @@
             ''cargo clippy --all --all-features --tests -- \
               -D clippy::pedantic \
               -D warnings \
-              -A clippy::module-name-repetitions \
-              -A clippy::too-many-lines \
-              -A clippy::nonminimal_bool''
+              -A clippy::type-complexity \
+              -A clippy::too-many-lines''
           ];
       };
-      defaultPackage = packages.runalyzer;
+      packages.line-info = pkgs.runCommandNoCC "line-info" {
+        buildInputs = [ packages.runalyzer ];
+      } ''
+        mkdir $out
+        cd $out
+        runalyzer
+      '';
+      defaultPackage = packages.line-info;
 
       checks = packages;
 

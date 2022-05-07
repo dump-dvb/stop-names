@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("{} stops loaded", stops.len());
 
     println!("reading telegrams");
-    let run_junctions = telegram::read_telegrams("../../formatted.csv")?;
+    let run_junctions = telegram::read_telegrams("../formatted.csv")?;
     let junctions_by_known_stops = segments::junctions_by_known_stops(
         &known_stops,
         run_junctions

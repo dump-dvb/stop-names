@@ -70,7 +70,7 @@ pub fn to_rational(durations: &[(Duration, Junction)]) -> Vec<(f64, Junction)> {
         .map(|(duration, junction)| {
             let d = duration.as_secs_f64();
             sum += d;
-            (sum / total, *junction)
+            (if total == 0.0 { 0.0 } else { sum / total }, *junction)
         })
         .collect()
 }
@@ -208,6 +208,7 @@ pub fn segmentize(
                 let junction = &segment.junctions[junction_index];
                 let junction_distance = junction.0 * length;
                 if new_distance > junction_distance {
+                    dbg!(junction_distance);
                     let point = line.start_point() + (line.delta() * ((junction_distance - distance) / (new_distance - distance))).into();
                     results.push(ResultSegment::Junction(junction.1, point));
                     junction_index += 1;

@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::time::{Duration, SystemTime};
 use serde::Deserialize;
@@ -9,6 +9,7 @@ const JUNCTION_MAX_DURATION: u64 = 20 * 60;
 mod telegram;
 mod osm_lines;
 mod known_stops;
+mod segments;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct LineRun {
@@ -25,45 +26,22 @@ pub struct Run(u16);
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
 pub struct Junction(u32);
 
+pub struct Segment {
+    junctions: Vec<(Junction, Option<Duration>)>,
+}
+
 fn main() -> Result<(), Box<dyn Error>> {
     println!("loading known stops");
     let stops = known_stops::load("../stops.json")?;
+    let known_stops = stops.keys().cloned().collect::<HashSet<_>>();
     println!("{} stops loaded", stops.len());
     
     println!("reading telegrams");
-    let mut stamps_by_run = telegram::read_telegrams("../../old1.csv")?;
-    println!("sorting {} telegrams", stamps_by_run.len());
-    for stamps in stamps_by_run.values_mut() {
-        stamps.sort();
-    }
-
-    println!("collecting minimal durations");
-    let durations_by_run = stamps_by_run.into_iter()
-        .map(|(line_run, stamps)| {
-            let mut last_stamp: Option<(SystemTime, Junction)> = None;
-            let mut durations = HashMap::new();
-            for stamp@(time, junction) in stamps.into_iter() {
-                if let Some((last_time, last_junction)) = last_stamp.take() {
-                    if last_junction != junction {
-                        let duration = time.duration_since(last_time)
-                            .expect("duration_since");
-                        if duration.as_secs() > JUNCTION_MAX_DURATION {
-                            continue;
-                        }
-                        let min_duration = durations.entry((last_junction, junction))
-                            .or_insert(duration);
-                        if duration < *min_duration {
-                            *min_duration = duration;
-                        }
-                    }
-                }
-
-                last_stamp = Some(stamp);
-            }
-
-            (line_run, durations)
-        })
-        .collect::<HashMap<_, _>>();
+    let run_junctions = telegram::read_telegrams("../../formatted.csv")?;
+    let junctions_by_known_stops = segments::junctions_by_known_stops(
+        &known_stops,
+        run_junctions
+    );
 
     let mut lines = HashMap::<Line, Vec<osm_lines::LineInfo>>::new();
     for line_info in osm_lines::read("../trams.json")?.into_iter()
@@ -75,54 +53,163 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     for (line, line_infos) in lines.into_iter() {
-        println!("tracing junctions of line {}", line.0);
         for line_info in line_infos {
-            let known_stops = stops.iter().filter_map(|(junction, stop)| {
+            let mut line_known_stops = stops.iter().filter_map(|(junction, stop)| {
                 let known_point = Point::new(stop.lon, stop.lat);
                 line_info.ways.iter()
                     .filter_map(|way| {
-                        let line = LineString::new(
+                        let linestring = LineString::new(
                             way.iter().map(|waypoint| coord! {
                                 x: waypoint.lon,
                                 y: waypoint.lat,
                             }).collect()
                         );
-                        match line.closest_point(&known_point) {
-                            Closest::Intersection(p) => {
-                                Some((known_point.euclidean_distance(&p), p, line))
+                        linestring.lines().enumerate()
+                            .filter_map(|(index, line)| {
+                                match line.closest_point(&known_point) {
+                                    Closest::Intersection(p) => {
+                                        Some((index, known_point.euclidean_distance(&p), p))
+                                    }
+                                    Closest::SinglePoint(p) => {
+                                        Some((index, known_point.euclidean_distance(&p), p))
+                                    }
+                                    Closest::Indeterminate => None,
+                                }
+                            }).min_by(|(_, d1, _), (_, d2, _)| {
+                                use std::cmp::Ordering;
+                                if d1 < d2 {
+                                    Ordering::Less
+                                } else if d1 > d2 {
+                                    Ordering::Greater
+                                } else {
+                                    Ordering::Equal
+                                }
+                            })
+                            .and_then(|(index, distance, closest_point)| {
+                                // within 35m
+                                if distance < 0.0005 {
+                                    Some((index, closest_point))
+                                } else {
+                                    None
+                                }
+                            }).map(|(index, closest_point)| {
+                                (index, *junction, closest_point)
+                            })
+                    }).next()
+            }).collect::<Vec<_>>();
+            line_known_stops.sort_by_key(|(index, _, _)| *index);
+            println!("Found {} known stops in OSM {}", line_known_stops.len(), line_info.name);
+            if line_known_stops.len() < 2 {
+                continue;
+            }
+
+            let known_stop_junctions = line_known_stops.iter()
+                .map(|(_, junction, _)| junction)
+                .cloned()
+                .collect::<Vec<Junction>>();
+            let mut best_length = 0;
+            let mut matching_runs = vec![];
+            for (line_run, known_junctions, junctions) in &junctions_by_known_stops {
+                if line_run.line != line {
+                    continue;
+                }
+
+                if known_junctions.len() > 1
+                && is_similar_sequence(known_junctions, &known_stop_junctions) {
+
+                    if known_stop_junctions.len() > best_length {
+                        best_length = known_stop_junctions.len();
+                        matching_runs = vec![];
+                    }
+
+                    matching_runs.push(junctions);
+                }
+            }
+            println!("telegrams contain {} good matching runs", matching_runs.len());
+            // longest known junctions segment between known stations
+            let mut longest_segments = HashMap::new();
+            let mut min_durations = HashMap::new();
+            for junctions in matching_runs.into_iter() {
+                // best junction path between stations
+                for ((start, stop), segment) in segments::segment_run_by_known_stops(&known_stops, junctions) {
+                    let mut last_junction = None;
+                    for (duration, junction) in segment.clone() {
+                        if let Some(last_junction) = last_junction.take() {
+                            let min_duration = min_durations.entry((last_junction, junction))
+                                .or_insert(duration);
+                            if duration < *min_duration {
+                                *min_duration = duration;
                             }
-                            Closest::SinglePoint(p) => {
-                                Some((known_point.euclidean_distance(&p), p, line))
-                            }
-                            Closest::Indeterminate => None,
                         }
-                    }).min_by(|(d1, _, _), (d2, _, _)| {
-                        use std::cmp::Ordering;
-                        if d1 < d2 {
-                            Ordering::Less
-                        } else if d1 > d2 {
-                            Ordering::Greater
+
+                        last_junction = Some(junction);
+                    }
+
+                    let longest_segment = longest_segments.entry((start, stop))
+                        .or_insert_with(|| segment.clone());
+                    if longest_segment.len() < segment.len() {
+                        *longest_segment = segment.clone();
+                    }
+                }
+
+            }
+            // apply min_durations with each longest_segment
+            let longest_segments = longest_segments.into_iter()
+                .map(|((start, stop), segment)| {
+                    let mut last_junction = None;
+                    let mut min_segment = Vec::with_capacity(segment.len());
+                    for (duration, junction) in segment.into_iter() {
+                        let result = if let Some(last_junction) = last_junction {
+                            if let Some(min_duration) = min_durations.get(&(last_junction, junction)) {
+                                (*min_duration, junction)
+                            } else {
+                                println!("No best duration for {:?}", (last_junction, junction));
+                                (duration, junction)
+                            }
                         } else {
-                            Ordering::Equal
-                        }
-                    })
-                    .and_then(|closest_point| {
-                        if closest_point.0 < 0.0001 {
-                            Some(closest_point)
+                                (duration, junction)
+                        };
+                        min_segment.push(result);
+
+                        last_junction = Some(junction);
+                    }
+                    ((start, stop), min_segment)
+                })
+                .collect::<HashMap<_, _>>();
+
+            let mut last = None;
+            let known_stop_segments = line_known_stops.into_iter()
+                .filter_map(|(_, junction, point)| {
+                    let result = if let Some((last_junction, last_point)) = last.take() {
+                        if let Some(longest_segment) = longest_segments.get(&(last_junction, junction)) {
+                            let segment = segments::to_rational(longest_segment);
+                            Some(segments::Segment {
+                                start: (last_junction, last_point),
+                                stop: (junction, point),
+                                segment,
+                            })
                         } else {
                             None
                         }
-                    }).map(|closest_point| {
-                        (junction, closest_point.1)
-                    })
-            }).collect::<Vec<_>>();
-            println!("Found {} known stops in {}", known_stops.len(), line_info.name);
+                    } else {
+                        None
+                    };
 
-            // println!("matching known durations to known stops");
-            // for (line_run, duration) in durations_by_run.into_iter() {
-            // }
+                    last = Some((junction, point));
+                    result
+                }).collect::<Vec<_>>();
+            dbg!(known_stop_segments);
         }
     }
     
     Ok(())
+}
+
+fn is_similar_sequence(partial: &[Junction], goal: &[Junction]) -> bool {
+    let partial_set = partial.iter().collect::<HashSet<_>>();
+    let partial_of_goal = goal.iter()
+        .filter(|g| partial_set.contains(g))
+        .cloned()
+        .collect::<Vec<_>>();
+    &partial_of_goal[..] == partial
 }

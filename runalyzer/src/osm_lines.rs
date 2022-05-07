@@ -36,18 +36,18 @@ struct Record {
     tags: Option<HashMap<String, String>>,
 }
 
-// impl Record {
-//     fn line_stop(&self) -> Option<LineStop> {
-//         if self.record_type != RecordType::Node {
-//             println!("stop is not a node: {:?}", self);
-//         }
-//         Some(LineStop {
-//             name: self.tags.as_ref()?.get("name")?.to_string(),
-//             lat: self.lat?,
-//             lon: self.lon?,
-//         })
-//     }
-// }
+impl Record {
+    fn line_stop(&self) -> Option<LineStop> {
+        if self.record_type != RecordType::Node {
+            println!("stop is not a node: {:?}", self);
+        }
+        Some(LineStop {
+            name: self.tags.as_ref()?.get("name")?.to_string(),
+            lat: self.lat?,
+            lon: self.lon?,
+        })
+    }
+}
 
 #[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
 struct RelationMember {
@@ -274,8 +274,37 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             info.glue_ways();
                             info.detect_discontiguity();
                         }
+
+                        let exit_stops = if let Some(members) = &record.members {
+                            members.iter().filter(|member| member.role == "stop_exit_only")
+                                .filter_map(|member| {
+                                    records.get(&(member.record_type, member.record_ref))
+                                        .and_then(|record| record.line_stop())
+                                }).collect()
+                        } else {
+                            vec![]
+                        };
+                        let distance_to_exit = |way: &Waypoint| exit_stops.iter()
+                            .map(|line_stop| {
+                                Point::new(way.lon, way.lat)
+                                    .geodesic_distance(&Point::new(line_stop.lon, line_stop.lat))
+                            }).min_by(|d1, d2| {
+                                use std::cmp::Ordering;
+                                if d1 < d2 {
+                                    Ordering::Less
+                                } else if d1 > d2 {
+                                    Ordering::Greater
+                                } else {
+                                    Ordering::Equal
+                                }
+                            });
+                        for ways in info.ways.iter_mut() {
+                            if distance_to_exit(&ways[0]) > distance_to_exit(&ways[ways.len() - 1]) {
+                                ways.reverse();
+                            }
+                        }
+
                         infos.push(info);
-                        // TODO: reverse depending on stop_exit_only
                     }
                 }
             }

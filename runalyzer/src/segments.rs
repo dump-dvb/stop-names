@@ -3,7 +3,7 @@ use std::time::{Duration, SystemTime};
 use geo::{prelude::{Contains, EuclideanLength}, LineString, Point};
 use serde::{Serialize, Serializer, ser::{SerializeStruct, SerializeTuple}};
 use super::osm_lines::Waypoint;
-use super::*;
+use super::{Closest, ClosestPoint, EuclideanDistance, HashMap, Junction, LineRun, coord};
 
 pub fn junctions_by_known_stops(
     known_stops: &HashSet<Junction>, 
@@ -15,7 +15,7 @@ pub fn junctions_by_known_stops(
         let stops = junctions.iter()
             .map(|(_, junction)| junction)
             .filter(|junction| known_stops.contains(junction))
-            .cloned()
+            .copied()
             .collect::<Vec<_>>();
 
         results.push((line_run, stops, junctions));
@@ -34,7 +34,7 @@ pub fn segment_run_by_known_stops(
     let mut next = vec![];
     for (time, junction) in junctions {
         if last_known.is_some() {
-            next.push((time.clone(), *junction));
+            next.push((*time, *junction));
         }
 
         if known_stops.contains(junction) {
@@ -75,10 +75,10 @@ pub fn to_rational(durations: &[(Duration, Junction)]) -> Vec<(f64, Junction)> {
         .collect()
 }
 
-pub fn way_point(ways: &Vec<Vec<Waypoint>>, known_point: &Point<f64>) -> Option<(usize, Point<f64>)> {
+pub fn way_point(ways: &[Vec<Waypoint>], known_point: &Point<f64>) -> Option<(usize, Point<f64>)> {
     let mut index = 0;
     ways.iter()
-        .filter_map(|way| {
+        .find_map(|way| {
             let linestring = LineString::new(
                 way.iter().map(|waypoint| coord! {
                     x: waypoint.lon,
@@ -89,10 +89,7 @@ pub fn way_point(ways: &Vec<Vec<Waypoint>>, known_point: &Point<f64>) -> Option<
                 .filter_map(|line| {
                     index += 1;
                     match line.closest_point(known_point) {
-                        Closest::Intersection(p) => {
-                            Some((index, known_point.euclidean_distance(&p), p))
-                        }
-                        Closest::SinglePoint(p) => {
+                        Closest::Intersection(p) | Closest::SinglePoint(p) => {
                             Some((index, known_point.euclidean_distance(&p), p))
                         }
                         Closest::Indeterminate => None,
@@ -117,7 +114,7 @@ pub fn way_point(ways: &Vec<Vec<Waypoint>>, known_point: &Point<f64>) -> Option<
                 }).map(|(index, closest_point)| {
                     (index, closest_point)
                 })
-        }).next()
+        })
 }
 
 fn split_linestring_at_point(linestring: LineString<f64>, point: &Point<f64>) -> (LineString<f64>, LineString<f64>) {
@@ -183,9 +180,9 @@ impl Serialize for ResultSegment {
 // segments must be ordered
 pub fn segmentize(
     segment: &Segment,
-    ways: &Vec<Vec<Waypoint>>,
+    ways: &[Vec<Waypoint>],
 ) -> Vec<Vec<ResultSegment>> {
-    if segment.junctions.len() == 0 {
+    if segment.junctions.is_empty() {
         return vec![];
     }
     
@@ -198,9 +195,8 @@ pub fn segmentize(
         );
         let (_, linestring) = split_linestring_at_point(linestring, &segment.start.1);
         let (linestring, _) = split_linestring_at_point(linestring, &segment.stop.1);
-        if linestring.lines().next().is_none() {
-            return None;
-        }
+        // return early if empty
+        linestring.lines().next()?;
         let length = linestring_length(&linestring);
 
         let mut results = vec![];
@@ -226,7 +222,7 @@ pub fn segmentize(
         }
 
         if junction_index != segment.junctions.len() {
-            println!("not all segments processed")
+            println!("not all segments processed");
         }
         Some(results)
     }).collect()

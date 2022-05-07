@@ -1,6 +1,6 @@
 use std::fs::File;
 use serde::Deserialize;
-use super::*;
+use super::{Error, HashMap, Junction};
 
 #[derive(Debug, Deserialize)]
 pub struct Stop {

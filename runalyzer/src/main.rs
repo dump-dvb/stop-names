@@ -1,11 +1,8 @@
 use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::fs::File;
-use std::time::{Duration, SystemTime};
 use serde::{Deserialize, Serialize};
-use geo::{coord, LineString, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
-
-const JUNCTION_MAX_DURATION: u64 = 20 * 60;
+use geo::{coord, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
 
 mod telegram;
 mod osm_lines;
@@ -36,9 +33,9 @@ pub struct ResultSegments {
 fn main() -> Result<(), Box<dyn Error>> {
     println!("loading known stops");
     let stops = known_stops::load("../stops.json")?;
-    let known_stops = stops.keys().cloned().collect::<HashSet<_>>();
+    let known_stops = stops.keys().copied().collect::<HashSet<_>>();
     println!("{} stops loaded", stops.len());
-    
+
     println!("reading telegrams");
     let run_junctions = telegram::read_telegrams("../../formatted.csv")?;
     let junctions_by_known_stops = segments::junctions_by_known_stops(
@@ -55,10 +52,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             .push(line_info);
     }
 
-    for (line, line_infos) in lines.into_iter() {
+    for (line, line_infos) in lines {
         let mut line_results = vec![];
 
-        for line_info in line_infos.into_iter() {
+        for line_info in line_infos {
             let mut line_known_stops = stops.iter().filter_map(|(junction, stop)| {
                 let known_point = Point::new(stop.lon, stop.lat);
                 segments::way_point(&line_info.ways, &known_point)
@@ -72,7 +69,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             let known_stop_junctions = line_known_stops.iter()
                 .map(|(_, junction, _)| junction)
-                .cloned()
+                .copied()
                 .collect::<Vec<Junction>>();
             let mut best_length = 0;
             let mut matching_runs = vec![];
@@ -96,7 +93,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             // longest known junctions segment between known stations
             let mut longest_segments = HashMap::new();
             let mut min_durations = HashMap::new();
-            for junctions in matching_runs.into_iter() {
+            for junctions in matching_runs {
                 // best junction path between stations
                 for ((start, stop), segment) in segments::segment_run_by_known_stops(&known_stops, junctions) {
                     let mut last_junction = None;
@@ -125,7 +122,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .map(|((start, stop), segment)| {
                     let mut last_junction = None;
                     let mut min_segment = Vec::with_capacity(segment.len());
-                    for (duration, junction) in segment.into_iter() {
+                    for (duration, junction) in segment {
                         let result = if let Some(last_junction) = last_junction {
                             if let Some(min_duration) = min_durations.get(&(last_junction, junction)) {
                                 (*min_duration, junction)
@@ -164,10 +161,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
                     last = Some((junction, point));
                     result
-                }).collect::<Vec<_>>();
+                });
             let segment_results = known_stop_segments.into_iter()
-                .map(|segment| segments::segmentize(&segment, &line_info.ways))
-                .flatten()
+                .flat_map(|segment| segments::segmentize(&segment, &line_info.ways))
                 .collect::<Vec<_>>();
             line_results.push(ResultSegments {
                 line: line_info.name,
@@ -179,9 +175,10 @@ fn main() -> Result<(), Box<dyn Error>> {
         println!("Writing {}", filename);
         let f = File::create(filename)
             .unwrap();
-        serde_json::to_writer_pretty(f, &line_results);
+        serde_json::to_writer_pretty(f, &line_results)
+            .unwrap();
     }
-    
+
     Ok(())
 }
 
@@ -189,7 +186,7 @@ fn is_similar_sequence(partial: &[Junction], goal: &[Junction]) -> bool {
     let partial_set = partial.iter().collect::<HashSet<_>>();
     let partial_of_goal = goal.iter()
         .filter(|g| partial_set.contains(g))
-        .cloned()
+        .copied()
         .collect::<Vec<_>>();
     &partial_of_goal[..] == partial
 }

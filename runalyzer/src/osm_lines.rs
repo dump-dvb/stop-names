@@ -1,6 +1,6 @@
 use std::fs::File;
 use serde::Deserialize;
-use super::*;
+use super::{Error, HashMap, Line};
 
 #[derive(Debug, Deserialize)]
 struct OverpassJson {
@@ -84,8 +84,8 @@ impl LineInfo {
     fn detect_discontiguity(&self) {
         let mut discontiguities = 0;
         for i in 1..self.ways.len() {
-            if self.ways[i - 1].len() > 0 &&
-                self.ways[i].len() > 0 &&
+            if !self.ways[i - 1].is_empty() &&
+                !self.ways[i].is_empty() &&
                 self.ways[i - 1][self.ways[i - 1].len() - 1] != self.ways[i][0] &&
                 self.ways[i][self.ways[i].len() - 1] != self.ways[i - 1][0]
             {
@@ -99,7 +99,7 @@ impl LineInfo {
 
     pub fn reorder_ways(&mut self) {
         let mut all_ways = vec![];
-        while self.ways.len() > 0 {
+        while !self.ways.is_empty() {
             let mut ways = self.ways.remove(0);
 
             let mut done = false;
@@ -156,62 +156,58 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
         .collect::<HashMap<_, _>>();
     
     for record in &json.elements {
-        match record.record_type {
-            RecordType::Relation => {
-                if let (Some(members), Some(tags)) = (&record.members, &record.tags) {
-                    if [Some("route")].contains(&tags.get("type").map(|s| s.as_str())) && [Some("tram"), Some("bus")].contains(&tags.get("route").map(|s| s.as_str())) {
-                        let line = str::parse(tags.get("ref").expect("line ref"))
-                            .ok()
-                            .map(Line);
-                        if let Some(line) = line {
-                            let name = tags.get("name").map(|s| s.to_string())
-                                .unwrap_or_else(|| format!("Linie {}", line.0));
-                            // let stops = if let Some(members) = &record.members {
-                            //     members.iter().filter(|member| member.role == "stop")
-                            //         .filter_map(|member| {
-                            //             records.get(&(member.record_type, member.record_ref))
-                            //                 .and_then(|record| record.line_stop())
-                            //         }).collect()
-                            // } else {
-                            //     vec![]
-                            // };
-                            let ways = if let Some(members) = &record.members {
-                                members.iter().filter(|member| member.record_type == RecordType::Way && member.role == "")
-                                    .map(|member| {
-                                        records.get(&(member.record_type, member.record_ref))
-                                            .expect("way")
-                                    })
-                                    .map(|way| {
-                                        way.nodes.as_ref().expect("way.nodes")
-                                            .iter().map(|id| {
-                                                records.get(&(RecordType::Node, *id))
-                                                    .map(|record| Waypoint {
-                                                        id: *id,
-                                                        lat: record.lat.expect("lat"),
-                                                        lon: record.lon.expect("lon"),
-                                                    })
-                                                    .expect("way node")
-                                            }).collect()
-                                    })
-                                    .collect()
-                            } else {
-                                vec![]
-                            };
-                            let mut info = LineInfo {
-                                line,
-                                name,
-                                // stops,
-                                ways,
-                            };
-                            info.reorder_ways();
-                            info.detect_discontiguity();
-                            infos.push(info);
-                            // TODO: reverse depending on stop_exit_only
-                        }
+        if record.record_type == RecordType::Relation {
+            if let (Some(_members), Some(tags)) = (&record.members, &record.tags) {
+                if [Some("route")].contains(&tags.get("type").map(std::string::String::as_str)) && [Some("tram"), Some("bus")].contains(&tags.get("route").map(std::string::String::as_str)) {
+                    let line = str::parse(tags.get("ref").expect("line ref"))
+                        .ok()
+                        .map(Line);
+                    if let Some(line) = line {
+                        let name = tags.get("name").map_or_else(|| format!("Linie {}", line.0), std::string::ToString::to_string);
+                        // let stops = if let Some(members) = &record.members {
+                        //     members.iter().filter(|member| member.role == "stop")
+                        //         .filter_map(|member| {
+                        //             records.get(&(member.record_type, member.record_ref))
+                        //                 .and_then(|record| record.line_stop())
+                        //         }).collect()
+                        // } else {
+                        //     vec![]
+                        // };
+                        let ways = if let Some(members) = &record.members {
+                            members.iter().filter(|member| member.record_type == RecordType::Way && member.role.is_empty())
+                                .map(|member| {
+                                    records.get(&(member.record_type, member.record_ref))
+                                        .expect("way")
+                                })
+                                .map(|way| {
+                                    way.nodes.as_ref().expect("way.nodes")
+                                        .iter().map(|id| {
+                                            records.get(&(RecordType::Node, *id))
+                                                .map(|record| Waypoint {
+                                                    id: *id,
+                                                    lat: record.lat.expect("lat"),
+                                                    lon: record.lon.expect("lon"),
+                                                })
+                                                .expect("way node")
+                                        }).collect()
+                                })
+                                .collect()
+                        } else {
+                            vec![]
+                        };
+                        let mut info = LineInfo {
+                            line,
+                            name,
+                            // stops,
+                            ways,
+                        };
+                        info.reorder_ways();
+                        info.detect_discontiguity();
+                        infos.push(info);
+                        // TODO: reverse depending on stop_exit_only
                     }
                 }
             }
-            _ => {}
         }
     }
 

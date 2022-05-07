@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::error::Error;
 use std::time::{Duration, SystemTime};
 use serde::Deserialize;
-use super::*;
+use super::{Junction, Line, LineRun, Run};
 
 const RUN_MAX_GAP: Duration = Duration::from_secs(1800);
 
@@ -61,7 +61,7 @@ pub fn read_telegrams(path: &str) -> Result<Vec<(LineRun, Vec<(SystemTime, Junct
         }
     }
 
-    for (line_run, junctions) in current.into_iter() {
+    for (line_run, junctions) in current {
         results.push((line_run, junctions));
     }
 

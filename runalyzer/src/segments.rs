@@ -1,6 +1,7 @@
 use std::collections::HashSet;
 use std::time::{Duration, SystemTime};
-use geo::Point;
+use geo::{Line, Point};
+use super::osm_lines::Waypoint;
 use super::*;
 
 pub fn junctions_by_known_stops(
@@ -73,6 +74,51 @@ pub fn to_rational(durations: &[(Duration, Junction)]) -> Vec<(f64, Junction)> {
         .collect()
 }
 
+pub fn way_point(ways: &Vec<Vec<Waypoint>>, known_point: &Point<f64>) -> Option<(usize, Point<f64>)> {
+    let mut index = 0;
+    ways.iter()
+        .filter_map(|way| {
+            let linestring = LineString::new(
+                way.iter().map(|waypoint| coord! {
+                    x: waypoint.lon,
+                    y: waypoint.lat,
+                }).collect()
+            );
+            linestring.lines()
+                .filter_map(|line| {
+                    index += 1;
+                    match line.closest_point(known_point) {
+                        Closest::Intersection(p) => {
+                            Some((index, known_point.euclidean_distance(&p), p))
+                        }
+                        Closest::SinglePoint(p) => {
+                            Some((index, known_point.euclidean_distance(&p), p))
+                        }
+                        Closest::Indeterminate => None,
+                    }
+                }).min_by(|(_, d1, _), (_, d2, _)| {
+                    use std::cmp::Ordering;
+                    if d1 < d2 {
+                        Ordering::Less
+                    } else if d1 > d2 {
+                        Ordering::Greater
+                    } else {
+                        Ordering::Equal
+                    }
+                })
+                .and_then(|(index, distance, closest_point)| {
+                    // within 35m
+                    if distance < 0.0005 {
+                        Some((index, closest_point))
+                    } else {
+                        None
+                    }
+                }).map(|(index, closest_point)| {
+                    (index, closest_point)
+                })
+        }).next()
+}
+
 #[derive(Clone, Debug)]
 pub struct Segment {
     pub start: (Junction, Point<f64>),
@@ -80,8 +126,23 @@ pub struct Segment {
     pub segment: Vec<(f64, Junction)>,
 }
 
+pub enum ResultSegment {
+    Junction(Junction, Point<f64>),
+    Point(Point<f64>),
+}
+
 // segments must be ordered
 pub fn segmentize(
-    segments: &[Segment],
-) {
+    segment: &Segment,
+    ways: &Vec<Vec<Waypoint>>,
+) -> Vec<ResultSegment> {
+    let mut result = vec![];
+
+    result.push(ResultSegment::Junction(segment.start.0, segment.start.1));
+
+
+    
+    result.push(ResultSegment::Junction(segment.stop.0, segment.stop.1));
+
+    result
 }

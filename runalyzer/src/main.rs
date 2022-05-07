@@ -56,46 +56,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         for line_info in line_infos {
             let mut line_known_stops = stops.iter().filter_map(|(junction, stop)| {
                 let known_point = Point::new(stop.lon, stop.lat);
-                line_info.ways.iter()
-                    .filter_map(|way| {
-                        let linestring = LineString::new(
-                            way.iter().map(|waypoint| coord! {
-                                x: waypoint.lon,
-                                y: waypoint.lat,
-                            }).collect()
-                        );
-                        linestring.lines().enumerate()
-                            .filter_map(|(index, line)| {
-                                match line.closest_point(&known_point) {
-                                    Closest::Intersection(p) => {
-                                        Some((index, known_point.euclidean_distance(&p), p))
-                                    }
-                                    Closest::SinglePoint(p) => {
-                                        Some((index, known_point.euclidean_distance(&p), p))
-                                    }
-                                    Closest::Indeterminate => None,
-                                }
-                            }).min_by(|(_, d1, _), (_, d2, _)| {
-                                use std::cmp::Ordering;
-                                if d1 < d2 {
-                                    Ordering::Less
-                                } else if d1 > d2 {
-                                    Ordering::Greater
-                                } else {
-                                    Ordering::Equal
-                                }
-                            })
-                            .and_then(|(index, distance, closest_point)| {
-                                // within 35m
-                                if distance < 0.0005 {
-                                    Some((index, closest_point))
-                                } else {
-                                    None
-                                }
-                            }).map(|(index, closest_point)| {
-                                (index, *junction, closest_point)
-                            })
-                    }).next()
+                segments::way_point(&line_info.ways, &known_point)
+                    .map(|(index, point)| (index, *junction, point))
             }).collect::<Vec<_>>();
             line_known_stops.sort_by_key(|(index, _, _)| *index);
             println!("Found {} known stops in OSM {}", line_known_stops.len(), line_info.name);

@@ -1,9 +1,9 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::time::{Duration, SystemTime};
-use geo::{prelude::{Contains, EuclideanLength}, LineString, Point};
+use geo::{prelude::{Contains, GeodesicDistance, GeodesicLength}, LineString, Point, coord};
 use serde::{Serialize, Serializer, ser::{SerializeStruct, SerializeTuple}};
 use super::osm_lines::Waypoint;
-use super::{Closest, ClosestPoint, EuclideanDistance, HashMap, Junction, LineRun, coord};
+use super::{Closest, ClosestPoint, Junction, LineRun};
 
 pub fn junctions_by_known_stops(
     known_stops: &HashSet<Junction>, 
@@ -90,7 +90,7 @@ pub fn way_point(ways: &[Vec<Waypoint>], known_point: &Point<f64>) -> Option<(us
                     index += 1;
                     match line.closest_point(known_point) {
                         Closest::Intersection(p) | Closest::SinglePoint(p) => {
-                            Some((index, known_point.euclidean_distance(&p), p))
+                            Some((index, known_point.geodesic_distance(&p), p))
                         }
                         Closest::Indeterminate => None,
                     }
@@ -105,8 +105,8 @@ pub fn way_point(ways: &[Vec<Waypoint>], known_point: &Point<f64>) -> Option<(us
                     }
                 })
                 .and_then(|(index, distance, closest_point)| {
-                    // within 35m
-                    if distance < 0.0005 {
+                    // meters
+                    if distance < 30.0 {
                         Some((index, closest_point))
                     } else {
                         None
@@ -138,7 +138,7 @@ fn split_linestring_at_point(linestring: LineString<f64>, point: &Point<f64>) ->
 // TODO: use wgs84
 fn linestring_length(linestring: &LineString<f64>) -> f64 {
     linestring.lines()
-        .map(|line| line.euclidean_length())
+        .map(|line| line.geodesic_length())
         .sum()
 }
 
@@ -203,7 +203,7 @@ pub fn segmentize(
         let mut distance = 0.0;
         let mut junction_index = 0;
         for line in linestring.lines() {
-            let new_distance = distance + line.euclidean_length();
+            let new_distance = distance + line.geodesic_length();
             while junction_index < segment.junctions.len() {
                 let junction = &segment.junctions[junction_index];
                 let junction_distance = junction.0 * length;

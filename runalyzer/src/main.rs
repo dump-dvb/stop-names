@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::fs::File;
 use serde::{Deserialize, Serialize};
-use geo::{coord, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
+use geo::{prelude::ClosestPoint, Closest, Point};
 
 mod telegram;
 mod osm_lines;

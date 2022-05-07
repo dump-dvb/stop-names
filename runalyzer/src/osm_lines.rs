@@ -37,16 +37,27 @@ struct Record {
 }
 
 impl Record {
-    fn line_stop(&self) -> Option<LineStop> {
+    fn waypoint(&self) -> Option<Waypoint> {
         if self.record_type != RecordType::Node {
-            println!("stop is not a node: {:?}", self);
+            return None;
         }
-        Some(LineStop {
-            name: self.tags.as_ref()?.get("name")?.to_string(),
+        Some(Waypoint {
+            id: self.id,
             lat: self.lat?,
             lon: self.lon?,
         })
     }
+
+    // fn line_stop(&self) -> Option<LineStop> {
+    //     if self.record_type != RecordType::Node {
+    //         println!("stop is not a node: {:?}", self);
+    //     }
+    //     Some(LineStop {
+    //         name: self.tags.as_ref()?.get("name")?.to_string(),
+    //         lat: self.lat?,
+    //         lon: self.lon?,
+    //     })
+    // }
 }
 
 #[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
@@ -203,12 +214,12 @@ impl LineInfo {
     }
 }
 
-#[derive(Debug, Clone)]
-pub struct LineStop {
-    pub name: String,
-    pub lat: f64,
-    pub lon: f64,
-}
+// #[derive(Debug, Clone)]
+// pub struct LineStop {
+//     pub name: String,
+//     pub lat: f64,
+//     pub lon: f64,
+// }
 
 pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
     println!("reading osm export {}", path);
@@ -221,7 +232,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
     let records = json.elements.iter()
         .map(|record| ((record.record_type, record.id), record))
         .collect::<HashMap<_, _>>();
-    
+
     for record in &json.elements {
         if record.record_type == RecordType::Relation {
             if let (Some(_members), Some(tags)) = (&record.members, &record.tags) {
@@ -250,11 +261,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                     way.nodes.as_ref().expect("way.nodes")
                                         .iter().map(|id| {
                                             records.get(&(RecordType::Node, *id))
-                                                .map(|record| Waypoint {
-                                                    id: *id,
-                                                    lat: record.lat.expect("lat"),
-                                                    lon: record.lon.expect("lon"),
-                                                })
+                                                .and_then(|record| record.waypoint())
                                                 .expect("way node")
                                         }).collect()
                                 })
@@ -275,16 +282,17 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             info.detect_discontiguity();
                         }
 
-                        let exit_stops = if let Some(members) = &record.members {
+                        let exit_points = if let Some(members) = &record.members {
                             members.iter().filter(|member| member.role == "stop_exit_only")
                                 .filter_map(|member| {
                                     records.get(&(member.record_type, member.record_ref))
-                                        .and_then(|record| record.line_stop())
+                                        .and_then(|record| record.waypoint())
                                 }).collect()
                         } else {
                             vec![]
                         };
-                        let distance_to_exit = |way: &Waypoint| exit_stops.iter()
+                        dbg!(&exit_points);
+                        let distance_to_exit = |way: &Waypoint| exit_points.iter()
                             .map(|line_stop| {
                                 Point::new(way.lon, way.lat)
                                     .geodesic_distance(&Point::new(line_stop.lon, line_stop.lat))
@@ -299,8 +307,14 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                 }
                             });
                         for ways in info.ways.iter_mut() {
-                            if distance_to_exit(&ways[0]) > distance_to_exit(&ways[ways.len() - 1]) {
-                                ways.reverse();
+                            let head_to_exit = distance_to_exit(&ways[0]);
+                            let tail_to_exit = distance_to_exit(&ways[ways.len() - 1]);
+                            match (head_to_exit, tail_to_exit) {
+                                (Some(head_to_exit), Some(tail_to_exit)) if head_to_exit > tail_to_exit => {
+                                    println!("Reversing ({:.0}m > {:.0}m)", head_to_exit, tail_to_exit);
+                                    ways.reverse();
+                                }
+                                _ => {}
                             }
                         }
 

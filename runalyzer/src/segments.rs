@@ -1,6 +1,7 @@
 use std::collections::HashSet;
 use std::time::{Duration, SystemTime};
 use geo::{prelude::{Contains, EuclideanLength}, LineString, Point};
+use serde::{Serialize, Serializer, ser::{SerializeStruct, SerializeTuple}};
 use super::osm_lines::Waypoint;
 use super::*;
 
@@ -157,6 +158,28 @@ pub enum ResultSegment {
     Point(Point<f64>),
 }
 
+impl Serialize for ResultSegment {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        match self {
+            ResultSegment::Point(p) => {
+                let mut state = serializer.serialize_tuple(2)?;
+                state.serialize_element(&p.x())?;
+                state.serialize_element(&p.y())?;
+                state.end()
+            }
+            ResultSegment::Junction(junction, p) => {
+                let mut state = serializer.serialize_struct("Junction", 2)?;
+                state.serialize_field("junction", &junction.0)?;
+                state.serialize_field("pos", &[p.x(), p.y()])?;
+                state.end()
+            }
+        }
+    }
+}
+
 // segments must be ordered
 pub fn segmentize(
     segment: &Segment,
@@ -173,16 +196,14 @@ pub fn segmentize(
                 y: waypoint.lat,
             }).collect()
         );
-        // let (_, linestring) = split_linestring_at_point(linestring, &segment.start.1);
-        // let (linestring, _) = split_linestring_at_point(linestring, &segment.stop.1);
+        let (_, linestring) = split_linestring_at_point(linestring, &segment.start.1);
+        let (linestring, _) = split_linestring_at_point(linestring, &segment.stop.1);
         if linestring.lines().next().is_none() {
             return None;
         }
         let length = linestring_length(&linestring);
 
-        let mut results = vec![
-            // ResultSegment::junction(segment.start.0, segment.start.1),
-        ];
+        let mut results = vec![];
         let mut distance = 0.0;
         let mut junction_index = 0;
         for line in linestring.lines() {
@@ -203,7 +224,6 @@ pub fn segmentize(
             results.push(ResultSegment::Point(line.end_point()));
             distance = new_distance;
         }
-        // results.push(ResultSegment::Junction(segment.start.0, segment.start.1));
 
         if junction_index != segment.junctions.len() {
             println!("not all segments processed")

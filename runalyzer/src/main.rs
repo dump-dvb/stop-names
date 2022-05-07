@@ -1,7 +1,8 @@
 use std::collections::{HashMap, HashSet};
 use std::error::Error;
+use std::fs::File;
 use std::time::{Duration, SystemTime};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use geo::{coord, LineString, prelude::{ClosestPoint, EuclideanDistance}, Closest, Point};
 
 const JUNCTION_MAX_DURATION: u64 = 20 * 60;
@@ -26,8 +27,10 @@ pub struct Run(u16);
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
 pub struct Junction(u32);
 
-pub struct Segment {
-    junctions: Vec<(Junction, Option<Duration>)>,
+#[derive(Debug, Serialize)]
+pub struct ResultSegments {
+    line: String,
+    segments: Vec<Vec<segments::ResultSegment>>,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -53,7 +56,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     for (line, line_infos) in lines.into_iter() {
-        for line_info in line_infos {
+        let mut line_results = vec![];
+
+        for line_info in line_infos.into_iter() {
             let mut line_known_stops = stops.iter().filter_map(|(junction, stop)| {
                 let known_point = Point::new(stop.lon, stop.lat);
                 segments::way_point(&line_info.ways, &known_point)
@@ -160,12 +165,21 @@ fn main() -> Result<(), Box<dyn Error>> {
                     last = Some((junction, point));
                     result
                 }).collect::<Vec<_>>();
-            let results = known_stop_segments.into_iter()
+            let segment_results = known_stop_segments.into_iter()
                 .map(|segment| segments::segmentize(&segment, &line_info.ways))
                 .flatten()
                 .collect::<Vec<_>>();
-            dbg!(results);
+            line_results.push(ResultSegments {
+                line: line_info.name,
+                segments: segment_results,
+            });
         }
+
+        let filename = format!("{}.json", line.0);
+        println!("Writing {}", filename);
+        let f = File::create(filename)
+            .unwrap();
+        serde_json::to_writer_pretty(f, &line_results);
     }
     
     Ok(())

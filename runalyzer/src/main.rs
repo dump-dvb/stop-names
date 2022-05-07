@@ -144,11 +144,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .filter_map(|(_, junction, point)| {
                     let result = if let Some((last_junction, last_point)) = last.take() {
                         if let Some(longest_segment) = longest_segments.get(&(last_junction, junction)) {
-                            let segment = segments::to_rational(longest_segment);
+                            let junctions = segments::to_rational(longest_segment);
                             Some(segments::Segment {
                                 start: (last_junction, last_point),
                                 stop: (junction, point),
-                                segment,
+                                junctions,
                             })
                         } else {
                             None
@@ -160,7 +160,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                     last = Some((junction, point));
                     result
                 }).collect::<Vec<_>>();
-            dbg!(known_stop_segments);
+            let results = known_stop_segments.into_iter()
+                .map(|segment| segments::segmentize(&segment, &line_info.ways))
+                .flatten()
+                .collect::<Vec<_>>();
+            dbg!(results);
         }
     }
     

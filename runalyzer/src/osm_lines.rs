@@ -206,6 +206,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             info.reorder_ways();
                             info.detect_discontiguity();
                             infos.push(info);
+                            // TODO: reverse depending on stop_exit_only
                         }
                     }
                 }

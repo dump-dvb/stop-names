@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 use std::time::{Duration, SystemTime};
-use geo::{Line, Point};
+use geo::{prelude::{Contains, EuclideanLength}, LineString, Point};
 use super::osm_lines::Waypoint;
 use super::*;
 
@@ -119,13 +119,39 @@ pub fn way_point(ways: &Vec<Vec<Waypoint>>, known_point: &Point<f64>) -> Option<
         }).next()
 }
 
+fn split_linestring_at_point(linestring: LineString<f64>, point: &Point<f64>) -> (LineString<f64>, LineString<f64>) {
+    let mut line_index = None;
+    for (index, line) in linestring.lines().enumerate() {
+        if line.contains(&point.0) {
+            line_index = Some(index);
+        }
+    }
+
+    if let Some(line_index) = line_index {
+        let points = linestring.into_points();
+        let (lines1, lines2) = points.split_at(line_index + 1);
+        return (LineString::new(lines1.iter().map(|p| p.0).chain([point.0].into_iter()).collect()),
+                LineString::new([point.0].into_iter().chain(lines2.iter().map(|p| p.0)).collect()));
+    }
+
+    (linestring, LineString::new(vec![]))
+}
+
+// TODO: use wgs84
+fn linestring_length(linestring: &LineString<f64>) -> f64 {
+    linestring.lines()
+        .map(|line| line.euclidean_length())
+        .sum()
+}
+
 #[derive(Clone, Debug)]
 pub struct Segment {
     pub start: (Junction, Point<f64>),
     pub stop: (Junction, Point<f64>),
-    pub segment: Vec<(f64, Junction)>,
+    pub junctions: Vec<(f64, Junction)>,
 }
 
+#[derive(Clone, Debug)]
 pub enum ResultSegment {
     Junction(Junction, Point<f64>),
     Point(Point<f64>),
@@ -135,14 +161,53 @@ pub enum ResultSegment {
 pub fn segmentize(
     segment: &Segment,
     ways: &Vec<Vec<Waypoint>>,
-) -> Vec<ResultSegment> {
-    let mut result = vec![];
-
-    result.push(ResultSegment::Junction(segment.start.0, segment.start.1));
-
-
+) -> Vec<Vec<ResultSegment>> {
+    if segment.junctions.len() == 0 {
+        return vec![];
+    }
     
-    result.push(ResultSegment::Junction(segment.stop.0, segment.stop.1));
+    ways.iter().filter_map(|way| {
+        let linestring = LineString::new(
+            way.iter().map(|waypoint| coord! {
+                x: waypoint.lon,
+                y: waypoint.lat,
+            }).collect()
+        );
+        // let (_, linestring) = split_linestring_at_point(linestring, &segment.start.1);
+        // let (linestring, _) = split_linestring_at_point(linestring, &segment.stop.1);
+        if linestring.lines().next().is_none() {
+            return None;
+        }
+        let length = linestring_length(&linestring);
 
-    result
+        let mut results = vec![
+            // ResultSegment::junction(segment.start.0, segment.start.1),
+        ];
+        let mut distance = 0.0;
+        let mut junction_index = 0;
+        for line in linestring.lines() {
+            let new_distance = distance + line.euclidean_length();
+            while junction_index < segment.junctions.len() {
+                let junction = &segment.junctions[junction_index];
+                let junction_distance = junction.0 * length;
+                if new_distance > junction_distance {
+                    let point = line.start_point() + (line.delta() * ((junction_distance - distance) / (new_distance - distance))).into();
+                    results.push(ResultSegment::Junction(junction.1, point));
+                    junction_index += 1;
+                } else {
+                    break
+                }
+
+            }
+
+            results.push(ResultSegment::Point(line.end_point()));
+            distance = new_distance;
+        }
+        // results.push(ResultSegment::Junction(segment.start.0, segment.start.1));
+
+        if junction_index != segment.junctions.len() {
+            println!("not all segments processed")
+        }
+        Some(results)
+    }).collect()
 }

@@ -122,7 +122,7 @@ fn split_linestring_at_point(linestring: LineString<f64>, point: &Point<f64>) ->
     let mut line_index = None;
     for (index, line) in linestring.lines().enumerate() {
         let dist = line.euclidean_distance(&point.0);
-        if min_dist.map(|min_dist| dist < min_dist).unwrap_or(true) {
+        if min_dist.map_or(true, |min_dist| dist < min_dist) {
             min_dist = Some(dist);
             line_index = Some(index);
         }

@@ -168,7 +168,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     *junction != segment.stop.0
                 ).count()
             ).sum();
-            println!("Adding {} new junctions to {:?} ways", new_junctions, line_info.ways.iter().map(|way| way.len()).collect::<Vec<_>>());
+            println!("Adding {} new junctions to {:?} ways", new_junctions, line_info.ways.iter().map(std::vec::Vec::len).collect::<Vec<_>>());
             let segment_results = known_stop_segments.into_iter()
                 .flat_map(|segment| segments::segmentize(&segment, &line_info.ways))
                 .collect::<Vec<_>>();

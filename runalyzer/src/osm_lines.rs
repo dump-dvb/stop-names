@@ -305,7 +305,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                     Ordering::Equal
                                 }
                             });
-                        for ways in info.ways.iter_mut() {
+                        for ways in &mut info.ways {
                             let head_to_exit = distance_to_exit(&ways[0]);
                             let tail_to_exit = distance_to_exit(&ways[ways.len() - 1]);
                             match (head_to_exit, tail_to_exit) {

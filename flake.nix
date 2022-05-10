@@ -10,7 +10,7 @@
   outputs = { self, nixpkgs, utils, naersk, fenix }:
     utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages."${system}";
-      rust = fenix.packages.${system}.complete.withComponents [
+      rust = fenix.packages.${system}.stable.withComponents [
         "cargo"
         "rustc"
         "rust-src"  # just for rust-analyzer
@@ -74,7 +74,7 @@
         nativeBuildInputs = [
           fenix.packages.${system}.rust-analyzer
         ] ++
-        (with defaultPackage; nativeBuildInputs ++ buildInputs);
+        (with packages.runalyzer; nativeBuildInputs ++ buildInputs);
       };
     }) // {
       overlay = final: prev: {

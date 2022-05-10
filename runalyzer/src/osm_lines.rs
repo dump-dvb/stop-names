@@ -262,15 +262,10 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                             .find(|record|
                                                   record.record_type == member.record_type &&
                                                   record.id == member.record_ref
-                                            ).and_then(|record| record.line_stop())
+                                            ).and_then(Record::line_stop)
                                     );
-                                    let result = // records.get(&(member.record_type, member.record_ref))
-                                    json.elements.iter()
-                                        .find(|record|
-                                              record.record_type == member.record_type &&
-                                              record.id == member.record_ref
-
-                                        ).and_then(|record| record.line_stop());
+                                    let result = records.get(&(member.record_type, member.record_ref))
+                                        .and_then(|record| record.line_stop());
                                     if result.is_none() {
                                         println!("Did not find stop with Id {}", member.record_ref.0);
                                     }
@@ -290,8 +285,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                         let to_stop = tags.get("to")
                             .and_then(|to|
                                 stops.iter()
-                                    .filter(|line_stop| line_stop.name == *to)
-                                    .next()
+                                    .find(|line_stop| line_stop.name == *to)
                             );
                         dbg!(from_stop, to_stop);
                         let ways = if let Some(members) = &record.members {
@@ -325,17 +319,11 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             info.detect_discontiguity();
                         }
 
-                        fn distance(way: &Waypoint, line_stop: &Option<&LineStop>) -> Option<f64> {
-                            line_stop.map(|line_stop|
-                                Point::new(way.lon, way.lat)
-                                    .geodesic_distance(&Point::new(line_stop.lon, line_stop.lat))
-                            )
-                        }
                         for ways in &mut info.ways {
-                            let head_to_from = distance(&ways[0], &from_stop);
-                            let tail_to_from = distance(&ways[ways.len() - 1], &from_stop);
-                            let head_to_to = distance(&ways[0], &to_stop);
-                            let tail_to_to = distance(&ways[ways.len() - 1], &to_stop);
+                            let head_to_from = distance(&ways[0], from_stop);
+                            let tail_to_from = distance(&ways[ways.len() - 1], from_stop);
+                            let head_to_to = distance(&ways[0], to_stop);
+                            let tail_to_to = distance(&ways[ways.len() - 1], to_stop);
                             match (head_to_from, head_to_to, tail_to_from, tail_to_to) {
                                 (Some(head_to_from), _, Some(tail_to_from), _) if head_to_from > 10.0 * tail_to_from => {
                                     println!("Reversing ({:.0}m > {:.0}m)", head_to_from, tail_to_from);
@@ -345,7 +333,7 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                                     println!("Reversing ({:.0}m < {:.0}m)", tail_to_from, tail_to_to);
                                     ways.reverse();
                                 }
-                                (Some(_), _, Some(_), _) => {}
+                                (Some(_), _, Some(_), _) |
                                 (_, Some(_), _, Some(_)) => {}
                                 _ => {
                                     println!("Trouble finding exits for {}", line.0);
@@ -361,4 +349,11 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
     }
 
     Ok(infos)
+}
+
+fn distance(way: &Waypoint, line_stop: Option<&LineStop>) -> Option<f64> {
+    line_stop.map(|line_stop|
+                  Point::new(way.lon, way.lat)
+                  .geodesic_distance(&Point::new(line_stop.lon, line_stop.lat))
+    )
 }

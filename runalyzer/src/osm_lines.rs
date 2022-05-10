@@ -1,7 +1,8 @@
+use std::collections::HashMap;
 use std::fs::File;
 use serde::Deserialize;
 use geo::{prelude::GeodesicDistance, Point};
-use super::{Error, HashMap, Line};
+use super::{Error, Line};
 
 #[derive(Debug, Deserialize)]
 struct OverpassJson {
@@ -48,16 +49,16 @@ impl Record {
         })
     }
 
-    // fn line_stop(&self) -> Option<LineStop> {
-    //     if self.record_type != RecordType::Node {
-    //         println!("stop is not a node: {:?}", self);
-    //     }
-    //     Some(LineStop {
-    //         name: self.tags.as_ref()?.get("name")?.to_string(),
-    //         lat: self.lat?,
-    //         lon: self.lon?,
-    //     })
-    // }
+    fn line_stop(&self) -> Option<LineStop> {
+        if self.record_type != RecordType::Node {
+            println!("stop is not a node: {:?}", self);
+        }
+        Some(LineStop {
+            name: self.tags.as_ref()?.get("name")?.to_string(),
+            lat: self.lat?,
+            lon: self.lon?,
+        })
+    }
 }
 
 #[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize)]
@@ -214,12 +215,12 @@ impl LineInfo {
     }
 }
 
-// #[derive(Debug, Clone)]
-// pub struct LineStop {
-//     pub name: String,
-//     pub lat: f64,
-//     pub lon: f64,
-// }
+#[derive(Debug, Clone, PartialEq)]
+pub struct LineStop {
+    pub name: String,
+    pub lat: f64,
+    pub lon: f64,
+}
 
 pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
     println!("reading osm export {}", path);
@@ -229,28 +230,70 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
     let json: OverpassJson = serde_json::from_reader(file)?;
     println!("{} osm primitives", json.elements.len());
 
-    let records = json.elements.iter()
-        .map(|record| ((record.record_type, record.id), record))
-        .collect::<HashMap<_, _>>();
+    let mut records = HashMap::new();
+    for record in &json.elements {
+        let r = records.entry((record.record_type, record.id))
+            .or_insert(record);
+        // some records are more than one time in the json file, only
+        // sometimes with tags
+        if r.tags.is_none() && record.tags.is_some() {
+            *r = record;
+        }
+    }
+    println!("{} records", records.len());
 
     for record in &json.elements {
         if record.record_type == RecordType::Relation {
             if let (Some(_members), Some(tags)) = (&record.members, &record.tags) {
-                if [Some("route")].contains(&tags.get("type").map(std::string::String::as_str)) && [Some("tram"), Some("bus")].contains(&tags.get("route").map(std::string::String::as_str)) {
+                if [Some("route")].contains(&tags.get("type").map(std::string::String::as_str))
+                && [Some("tram"), Some("bus")].contains(&tags.get("route").map(std::string::String::as_str)) {
                     let line = str::parse(tags.get("ref").expect("line ref"))
                         .ok()
                         .map(Line);
                     if let Some(line) = line {
                         let name = tags.get("name").map_or_else(|| format!("Linie {}", line.0), std::string::ToString::to_string);
-                        // let stops = if let Some(members) = &record.members {
-                        //     members.iter().filter(|member| member.role == "stop")
-                        //         .filter_map(|member| {
-                        //             records.get(&(member.record_type, member.record_ref))
-                        //                 .and_then(|record| record.line_stop())
-                        //         }).collect()
-                        // } else {
-                        //     vec![]
-                        // };
+                        let stops = if let Some(members) = &record.members {
+                            members.iter().filter(|member| member.role == "stop")
+                                .filter_map(|member| {
+                                    assert_eq!(
+                                        records.get(&(member.record_type, member.record_ref))
+                                            .and_then(|record| record.line_stop()),
+                                        json.elements.iter()
+                                            .find(|record|
+                                                  record.record_type == member.record_type &&
+                                                  record.id == member.record_ref
+                                            ).and_then(|record| record.line_stop())
+                                    );
+                                    let result = // records.get(&(member.record_type, member.record_ref))
+                                    json.elements.iter()
+                                        .find(|record|
+                                              record.record_type == member.record_type &&
+                                              record.id == member.record_ref
+
+                                        ).and_then(|record| record.line_stop());
+                                    if result.is_none() {
+                                        println!("Did not find stop with Id {}", member.record_ref.0);
+                                    }
+                                    result
+                                }).collect()
+                        } else {
+                            vec![]
+                        };
+                        dbg!(stops.len());
+                        let from_stop = tags.get("from")
+                            .and_then(|from|
+                                stops.iter()
+                                    .map(|line_stop| (strsim::levenshtein(from, &line_stop.name), line_stop))
+                                    .min_by_key(|(diff, _)| *diff)
+                                    .map(|(_, line_stop)| line_stop)
+                            );
+                        let to_stop = tags.get("to")
+                            .and_then(|to|
+                                stops.iter()
+                                    .filter(|line_stop| line_stop.name == *to)
+                                    .next()
+                            );
+                        dbg!(from_stop, to_stop);
                         let ways = if let Some(members) = &record.members {
                             members.iter().filter(|member| member.record_type == RecordType::Way && member.role.is_empty())
                                 .map(|member| {
@@ -282,38 +325,28 @@ pub fn read(path: &str) -> Result<Vec<LineInfo>, Box<dyn Error>> {
                             info.detect_discontiguity();
                         }
 
-                        let exit_points = if let Some(members) = &record.members {
-                            members.iter().filter(|member| member.role == "stop_exit_only")
-                                .filter_map(|member| {
-                                    records.get(&(member.record_type, member.record_ref))
-                                        .and_then(|record| record.waypoint())
-                                }).collect()
-                        } else {
-                            vec![]
-                        };
-                        let distance_to_exit = |way: &Waypoint| exit_points.iter()
-                            .map(|line_stop| {
+                        fn distance(way: &Waypoint, line_stop: &Option<&LineStop>) -> Option<f64> {
+                            line_stop.map(|line_stop|
                                 Point::new(way.lon, way.lat)
                                     .geodesic_distance(&Point::new(line_stop.lon, line_stop.lat))
-                            }).min_by(|d1, d2| {
-                                use std::cmp::Ordering;
-                                if d1 < d2 {
-                                    Ordering::Less
-                                } else if d1 > d2 {
-                                    Ordering::Greater
-                                } else {
-                                    Ordering::Equal
-                                }
-                            });
+                            )
+                        }
                         for ways in &mut info.ways {
-                            let head_to_exit = distance_to_exit(&ways[0]);
-                            let tail_to_exit = distance_to_exit(&ways[ways.len() - 1]);
-                            match (head_to_exit, tail_to_exit) {
-                                (Some(head_to_exit), Some(tail_to_exit)) if head_to_exit > tail_to_exit => {
-                                    println!("Reversing ({:.0}m > {:.0}m)", head_to_exit, tail_to_exit);
+                            let head_to_from = distance(&ways[0], &from_stop);
+                            let tail_to_from = distance(&ways[ways.len() - 1], &from_stop);
+                            let head_to_to = distance(&ways[0], &to_stop);
+                            let tail_to_to = distance(&ways[ways.len() - 1], &to_stop);
+                            match (head_to_from, head_to_to, tail_to_from, tail_to_to) {
+                                (Some(head_to_from), _, Some(tail_to_from), _) if head_to_from > 10.0 * tail_to_from => {
+                                    println!("Reversing ({:.0}m > {:.0}m)", head_to_from, tail_to_from);
                                     ways.reverse();
                                 }
-                                (Some(_), Some(_)) => {}
+                                (_, Some(tail_to_from), _, Some(tail_to_to)) if 10.0 * tail_to_from < tail_to_to => {
+                                    println!("Reversing ({:.0}m < {:.0}m)", tail_to_from, tail_to_to);
+                                    ways.reverse();
+                                }
+                                (Some(_), _, Some(_), _) => {}
+                                (_, Some(_), _, Some(_)) => {}
                                 _ => {
                                     println!("Trouble finding exits for {}", line.0);
                                 }

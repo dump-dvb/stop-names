@@ -27,7 +27,7 @@ pub struct Junction(u32);
 #[derive(Debug, Serialize)]
 pub struct ResultSegments {
     line: String,
-    segments: Vec<Vec<segments::ResultSegment>>,
+    segments: Vec<segments::ResultSegment>,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -171,6 +171,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             println!("Adding {} new junctions to {:?} ways", new_junctions, line_info.ways.iter().map(std::vec::Vec::len).collect::<Vec<_>>());
             let segment_results = known_stop_segments.into_iter()
                 .flat_map(|segment| segments::segmentize(&segment, &line_info.ways))
+                .flatten()
                 .collect::<Vec<_>>();
             line_results.push(ResultSegments {
                 line: line_info.name,

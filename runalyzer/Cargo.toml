@@ -1,0 +1,11 @@
+[package]
+name = "runalyzer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+csv = "1"
+serde_json = "1"
+strsim = "0.10"
+geo = "0.20"

@@ -498,6 +498,11 @@
             "lat": 51.050072,
             "lon": 13.712673
         },
+        "854": {
+            "name": "Wernerstraße",
+            "lat": 51.046389,
+            "lon": 13.707756
+        },
         "860": {
             "name": "Froebelstr. / Emerich-Ambros-Ufer",
             "lat": 51.050829,
@@ -527,6 +532,11 @@
             "name": "Koenneritzstr. / Schweriner Str.",
             "lat": 51.054075,
             "lon": 13.722238
+        },
+        "132": {
+            "name": "Ammonstrasse / Rosenstraße",
+            "lat": 51.047290,
+            "lon": 13.721475
         },
         "133": {
             "name": "Ammonstrasse / Freiberger Str.",
@@ -604,9 +614,24 @@
             "lon": 13.738403
         },
         "1003": {
-            "name": "Leipziger Str. 29",
+            "name": "Alter Schlachthof",
             "lat": 51.068620,
             "lon": 13.730891
+        },
+        "1004": {
+            "name": "Oschatzer Straße",
+            "lat": 51.074640,
+            "lon": 13.722871
+        },
+        "1014": {
+            "name": "Alexander-Puschkin-Platz",
+            "lat": 51.071072,
+            "lon": 13.728240
+        },
+        "1028": {
+            "name": "Leipziger Str. / Moritzburger Str.",
+            "lat": 51.073144,
+            "lon": 13.724901
         },
         "1274": {
             "name": "Bautzner Str. / Jaegerstr.",
@@ -632,6 +657,26 @@
             "name": "Fischhausstr / Heideparkstr.",
             "lat": 51.069317,
             "lon": 13.787302
+        },
+        "1406": {
+            "name": "Liststraße",
+            "lat": 51.077362,
+            "lon": 13.732538
+        },
+        "1451": {
+            "name": "Bürgerstraße",
+            "lat": 51.077009,
+            "lon": 13.725092
+        },
+        "1470": {
+            "name": "Rathaus Pieschen",
+            "lat":  51.077414,
+            "lon": 13.721187
+        },
+        "1471": {
+            "name": "Bürgerstraße / Harkortstraße",
+            "lat": 51.076321,
+            "lon": 13.729426
         },
         "113": {
             "name": "Albertbrueke / Sachsenplatz",
@@ -777,6 +822,16 @@
             "name": "Loschwitzer Str. / Lene-Glatzer-Str.",
             "lat": 51.053834,
             "lon": 13.792404
+        },
+        "9107": {
+            "name": "Messering / Zur Messe",
+            "lat": 51.068720,
+            "lon": 13.714412
+        },
+        "9109": {
+            "name": "LSA Dresden Messe Gleisschleife",
+            "lat": 51.071548,
+            "lon": 13.714604
         }
     }
 }

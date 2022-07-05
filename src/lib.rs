@@ -3,6 +3,8 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Stop {
+    dhid: Option<String>,
+    name: Option<String>,
     telegram_type: u8,
     direction: u8,
     lan: f64,
@@ -10,7 +12,29 @@ pub struct Stop {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct Stops(HashMap<u64, HashMap<u32, Vec<Stop>>>);
+pub enum R09Types {
+    R14,
+    R16,
+    R18
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct RegionMetaInformation {
+    frequency: Option<u64>,
+    city_name: Option<String>,
+    type_r09: Option<R09Types>
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Region {
+    #[serde(flatten)]
+    stops: HashMap<u32, Vec<Stop>>,
+
+    meta: RegionMetaInformation
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Stops(HashMap<u64, Region>);
 
 /*
 {

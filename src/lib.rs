@@ -3,6 +3,7 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Stop {
+    #[serde(alias = "DHID")] 
     dhid: Option<String>,
     name: Option<String>,
     telegram_type: u8,

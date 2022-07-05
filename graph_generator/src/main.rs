@@ -53,19 +53,19 @@ fn main() {
     for i in 0..telegrams.len() - 1 {
         let current_tele = &telegrams[i];
 
-        let mut time = current_tele.time_stamp;
+        let mut time = current_tele.time;
         let mut iterator = i + 10;
-        while time < current_tele.time_stamp + time_limit_future &&  iterator < telegrams.len() {
+        while (time.timestamp() as u64) < current_tele.time.timestamp() as u64 + time_limit_future &&  iterator < telegrams.len() {
             let future_tele = &telegrams[iterator];
-            time = future_tele.time_stamp;
+            time = future_tele.time;
 
             if current_tele.line == future_tele.line && current_tele.run_number == future_tele.run_number {
-                match measured.get_mut(&(current_tele.junction, current_tele.request_for_priority)) {
+                match measured.get_mut(&(current_tele.junction, current_tele.direction_request)) {
                     Some(value) => {
                         value.push(future_tele.junction);
                     }
                     None => {
-                        measured.insert((current_tele.junction, current_tele.request_for_priority), vec![future_tele.junction]);
+                        measured.insert((current_tele.junction, current_tele.direction_request), vec![future_tele.junction]);
                     }
                 }
             }

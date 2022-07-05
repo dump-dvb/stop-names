@@ -1,5 +1,6 @@
 use std::error::Error;
 use serde::{Deserialize, Serialize};
+use chrono::{DateTime, Utc};
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Deserialize, Serialize)]
 pub struct Line(u16);
@@ -16,17 +17,15 @@ pub struct Direction(u32);
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Telegram {
-    pub time_stamp: u64,
-    // lat: f64,
-    // lon: f64,
-    // station_id: u64,
+    pub time: DateTime<Utc>,
+    pub ip: String,
     pub line: Line,
     // destination_number: u64,
     // priority: (),
     // sign_of_deviation: (),
     // value_of_deviation: (),
     // reporting_point: (),
-    pub request_for_priority: Direction,
+    pub direction_request: Direction,
     pub run_number: Run,
     // reserve: (),
     // train_length: (),
@@ -39,6 +38,8 @@ pub fn read_telegrams(path: &str) -> Result<Vec<Telegram>, Box<dyn Error>> {
     let mut errors = 0;
     let mut results = vec![];
 
+    let desired_station = vec![String::from("10.13.37.100"), String::from("10.13.37.101")];
+
     for result in csv::Reader::from_path(path)?.deserialize::<Telegram>() {
         match result {
             Err(e) => {
@@ -46,8 +47,10 @@ pub fn read_telegrams(path: &str) -> Result<Vec<Telegram>, Box<dyn Error>> {
                 errors += 1;
             }
             Ok(telegram) => {
-                results.push(telegram);
-                amount += 1
+                if desired_station.contains(&telegram.ip) {
+                    results.push(telegram);
+                    amount += 1
+                }
             }
         }
     }

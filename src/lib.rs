@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Stop {
     dhid: Option<String>,
     name: Option<String>,
@@ -11,21 +11,21 @@ pub struct Stop {
     lon: f64
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub enum R09Types {
     R14,
     R16,
     R18
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct RegionMetaInformation {
     frequency: Option<u64>,
     city_name: Option<String>,
     type_r09: Option<R09Types>
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Region {
     #[serde(flatten)]
     stops: HashMap<u32, Vec<Stop>>,
@@ -33,7 +33,7 @@ pub struct Region {
     meta: RegionMetaInformation
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Stops(HashMap<u64, Region>);
 
 /*

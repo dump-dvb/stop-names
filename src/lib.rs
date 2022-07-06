@@ -2,13 +2,11 @@ use std::collections::HashMap;
 use serde::{
     Serialize, 
     Deserialize,
-    Deserializer,
-    de::Error
 };
 
 use std::fs;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum R09Types {
     R14 = 14,
     R16 = 16,
@@ -51,21 +49,54 @@ pub fn parse_from_file(file: &str) -> Stops {
     return res;
 }
 
-
-impl R09Types {
-    pub fn from_str<'de, D>(deserializer: D) -> Result<R09Types, D::Error>
+impl<'de> serde::Deserialize<'de> for R09Types {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
-        D: Deserializer<'de>,
+        D: serde::Deserializer<'de>
     {
-        let s: &str = Deserialize::deserialize(deserializer)?;
-        println!("Deserializing: {}", s);
-        match s {
-            "R09.18" => Ok(R09Types::R18),
-            "R09.16" => Ok(R09Types::R16),
-            "R09.14" => Ok(R09Types::R14),
-            _ => Err(Error::unknown_variant(s, &["R09.18", "R09.16", "R09.14"])),
+        struct R09TypesVisitor;
+
+        impl<'de> serde::de::Visitor<'de> for R09TypesVisitor {
+            type Value = R09Types;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                write!(formatter, "an integer or string representing a R09Type")
+            }
+
+            fn visit_str<E: serde::de::Error>(self, s: &str) -> Result<R09Types, E> {
+                Ok(match s {
+                    "R09.14" => R09Types::R14,
+                    "R09.16" => R09Types::R16,
+                    "R09.18" => R09Types::R18,
+                    _ => return Err(E::invalid_value(serde::de::Unexpected::Str(s), &self)),
+                })
+            }
+
+            fn visit_u64<E: serde::de::Error>(self, n: u64) -> Result<R09Types, E> {
+                Ok(match n {
+                    1 => R09Types::R14,
+                    2 => R09Types::R16,
+                    3 => R09Types::R18,
+                    _ => return Err(E::invalid_value(serde::de::Unexpected::Unsigned(n), &self)),
+                })
+            }
         }
+
+        deserializer.deserialize_any(R09TypesVisitor)
     }
+}
+
+impl Serialize for R09Types {
+        fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+            where S: ::serde::Serializer,
+        {
+            // Serialize the enum as a string.
+            serializer.serialize_str(match *self {
+                R09Types::R14 => "R09.14",
+                R09Types::R16 => "R09.16",
+                R09Types::R18 => "R09.18",
+            })
+        }
 }
 
 /*

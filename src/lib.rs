@@ -1,5 +1,11 @@
 use std::collections::HashMap;
-use serde::{Serialize, Deserialize};
+use serde::{
+    Serialize, 
+    Deserialize,
+    Deserializer,
+    de::Error
+};
+
 use std::fs;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -38,10 +44,28 @@ pub struct Region {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Stops(HashMap<u64, Region>);
 
+
 pub fn parse_from_file(file: &str) -> Stops {
     let data = fs::read_to_string(file).expect("Unable to read file");
     let res: Stops = serde_json::from_str(&data).expect("Unable to parse");
     return res;
+}
+
+
+impl R09Types {
+    pub fn from_str<'de, D>(deserializer: D) -> Result<R09Types, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s: &str = Deserialize::deserialize(deserializer)?;
+
+        match s {
+            "R09.18" => Ok(R09Types::R18),
+            "R09.16" => Ok(R09Types::R16),
+            "R09.14" => Ok(R09Types::R14),
+            _ => Err(Error::unknown_variant(s, &["R09.18", "R09.16", "R09.14"])),
+        }
+    }
 }
 
 /*

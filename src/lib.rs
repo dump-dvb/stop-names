@@ -1,22 +1,23 @@
 use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
+use std::fs;
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub enum R09Types {
+    R14 = 14,
+    R16 = 16,
+    R18 = 18
+}
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Stop {
     #[serde(alias = "DHID")] 
     dhid: Option<String>,
     name: Option<String>,
-    telegram_type: u8,
+    telegram_type: R09Types,
     direction: u8,
     lan: f64,
     lon: f64
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
-pub enum R09Types {
-    R14,
-    R16,
-    R18
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -36,6 +37,12 @@ pub struct Region {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Stops(HashMap<u64, Region>);
+
+pub fn parse_from_file(file: &str) -> Stops {
+    let data = fs::read_to_string(file).expect("Unable to read file");
+    let res: Stops = serde_json::from_str(&data).expect("Unable to parse");
+    return res;
+}
 
 /*
 {

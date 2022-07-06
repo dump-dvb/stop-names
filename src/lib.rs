@@ -58,7 +58,7 @@ impl R09Types {
         D: Deserializer<'de>,
     {
         let s: &str = Deserialize::deserialize(deserializer)?;
-
+        println!("Deserializing: {}", s);
         match s {
             "R09.18" => Ok(R09Types::R18),
             "R09.16" => Ok(R09Types::R16),

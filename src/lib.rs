@@ -39,7 +39,7 @@ pub struct RegionMetaInformation {
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
-pub struct DocuemtnMetaInformation {
+pub struct DocumentMetaInformation {
     pub schema_version: String,
     pub date: DateTime<Utc>,
     pub generator: Option<String>,
@@ -50,7 +50,7 @@ pub type RegionalTransmissionPositions = HashMap<u32, Vec<TransmissionPosition>>
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct InterRegional {
-    pub document: DocuemtnMetaInformation,
+    pub document: DocumentMetaInformation,
     pub data: HashMap<u64, RegionalTransmissionPositions>,
     pub meta: HashMap<u64, RegionMetaInformation>,
 }
@@ -69,9 +69,12 @@ impl InterRegional {
     }
 
     pub fn write(&self, file: &str) {
-        let json_data = serde_json::to_string_pretty(&self).unwrap();
-        let mut output = File::create(file).unwrap();
-        output.write_all(json_data.as_bytes()).unwrap();
+        let json_data = serde_json::to_string_pretty(&self)
+            .expect("cannot serialize structs!");
+        let mut output = File::create(file)
+            .expect("cannot create file!");
+        output.write_all(json_data.as_bytes())
+            .expect("cannot write to file!");
     }
 
     pub fn extract(&self, region: &u64) -> Option<Region> {

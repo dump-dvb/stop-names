@@ -2,7 +2,7 @@ use chrono::prelude::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
-use std::fs::File;
+use std::fs::OpenOptions;
 use std::io::Write;
 
 #[derive(Debug, PartialEq, Clone)]
@@ -62,17 +62,27 @@ pub struct Region {
 }
 
 impl InterRegional {
-    pub fn from(file: &str) -> InterRegional {
-        let data = fs::read_to_string(file).expect("Unable to read file");
-        let res: InterRegional = serde_json::from_str(&data).expect("Unable to parse");
-        return res;
+    pub fn from(file: &str) -> Option<InterRegional> {
+        let data = fs::read_to_string(file);
+
+        if data.is_ok() {
+            return None;
+        }
+
+        serde_json::from_str(&data.unwrap()).ok()
     }
 
     pub fn write(&self, file: &str) {
+        let mut output = OpenOptions::new()
+            .create_new(true)
+            .write(true)
+            .append(true)
+            .open(file)
+            .expect("cannot create or open file!");
+
         let json_data = serde_json::to_string_pretty(&self)
             .expect("cannot serialize structs!");
-        let mut output = File::create(file)
-            .expect("cannot create file!");
+
         output.write_all(json_data.as_bytes())
             .expect("cannot write to file!");
     }

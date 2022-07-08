@@ -189,9 +189,9 @@ impl Serialize for R09Types {
     {
         // Serialize the enum as a string.
         serializer.serialize_str(match *self {
-            R09Types::R14 => "R09.14",
-            R09Types::R16 => "R09.16",
-            R09Types::R18 => "R09.18",
+            R09Types::R14 => "14",
+            R09Types::R16 => "16",
+            R09Types::R18 => "18",
         })
     }
 }

@@ -1,8 +1,10 @@
+mod tests;
+
 use chrono::prelude::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
-use std::fs::OpenOptions;
+use std::fs::File;
 use std::io::Write;
 
 #[derive(Debug, PartialEq, Clone)]
@@ -51,8 +53,8 @@ pub type RegionalTransmissionPositions = HashMap<u32, Vec<TransmissionPosition>>
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct InterRegional {
     pub document: DocumentMetaInformation,
-    pub data: HashMap<u64, RegionalTransmissionPositions>,
-    pub meta: HashMap<u64, RegionMetaInformation>,
+    pub data: HashMap<String, RegionalTransmissionPositions>,
+    pub meta: HashMap<String, RegionMetaInformation>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -73,11 +75,8 @@ impl InterRegional {
     }
 
     pub fn write(&self, file: &str) {
-        let mut output = OpenOptions::new()
-            .create_new(true)
-            .write(true)
-            .append(true)
-            .open(file)
+        fs::remove_file(file).ok();
+        let mut output = File::create(file)
             .expect("cannot create or open file!");
 
         let json_data = serde_json::to_string_pretty(&self)
@@ -87,9 +86,9 @@ impl InterRegional {
             .expect("cannot write to file!");
     }
 
-    pub fn extract(&self, region: &u64) -> Option<Region> {
-        let data = self.data.get(region);
-        let meta = self.meta.get(region);
+    pub fn extract(&self, region_name: &String) -> Option<Region> {
+        let data = self.data.get(region_name);
+        let meta = self.meta.get(region_name);
 
         if data.is_none() || meta.is_none() {
             return None;
@@ -103,10 +102,10 @@ impl InterRegional {
 
     pub fn look_up(
         &self,
-        region_id: &u64,
+        region_name: &String,
         traffic_light: &u32,
     ) -> Option<Vec<TransmissionPosition>> {
-        match self.data.get(region_id) {
+        match self.data.get(region_name) {
             Some(region) => {
                 return region.get(traffic_light).map(|x| x.clone());
             }
@@ -116,10 +115,10 @@ impl InterRegional {
 
     pub fn get_approximate_position(
         &self,
-        region_id: &u64,
+        region_name: &String,
         traffic_light: &u32,
     ) -> Option<TransmissionPosition> {
-        let stop_list = self.look_up(region_id, traffic_light);
+        let stop_list = self.look_up(region_name, traffic_light);
 
         match stop_list {
             Some(possbile_stations) => {

@@ -9,6 +9,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::fs::File;
 use std::io::Write;
+use std::fmt;
 
 #[derive(Debug, PartialEq, Clone)]
 pub enum R09Types {
@@ -192,6 +193,16 @@ impl Serialize for R09Types {
             R09Types::R16 => "R09.16",
             R09Types::R18 => "R09.18",
         })
+    }
+}
+
+impl fmt::Display for R09Types {
+    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            R09Types::R14 => { formatter.write_str("R09.14") }
+            R09Types::R16 => { formatter.write_str("R09.16") }
+            R09Types::R18 => { formatter.write_str("R09.18") }
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 [package]
 name = "stop-names"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 authors = [ "Tassilo Tanneberger <revol-xut@protonmail.com>" ]
 homepage = "https://github.com/dump-dvb/stop-names"

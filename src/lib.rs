@@ -2,6 +2,9 @@ mod tests;
 
 use chrono::prelude::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
+
+use std::hash::Hash;
+use std::hash::Hasher;
 use std::collections::HashMap;
 use std::fs;
 use std::fs::File;
@@ -243,5 +246,15 @@ impl Serialize for TelegramType {
             TelegramType::DeRegistration => "2",
             TelegramType::DoorClosed => "3",
         })
+    }
+}
+
+impl Hash for R09Types {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        match self {
+            R09Types::R14 => { 14u32.hash(state); }
+            R09Types::R16 => { 16u32.hash(state); }
+            R09Types::R18 => { 18u32.hash(state); }
+        }
     }
 }

@@ -59,7 +59,9 @@
         cd $out
         runalyzer
       '';
-      defaultPackage = packages.line-info;
+      packages.stops-json = pkgs.callPackage ./stops-json.nix { };
+      packages.graph-json = pkgs.callPackage ./graph-json.nix { };
+      packages.default = packages.line-info;
 
       checks = packages;
 
@@ -67,18 +69,20 @@
       apps.runalyzer = utils.lib.mkApp {
         drv = packages.runalyzer;
       };
-      defaultApp = apps.runalyzer;
+      apps.default = apps.runalyzer;
 
       # `nix develop`
-      devShell = pkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         nativeBuildInputs = [
           fenix.packages.${system}.rust-analyzer
         ] ++
         (with packages.runalyzer; nativeBuildInputs ++ buildInputs);
       };
     }) // {
-      overlay = final: prev: {
+      overlays.default = final: prev: {
         runalyzer = self.packages.${prev.system};
+        stops-json = self.packages.${prev.system};
+        graph-json = self.packages.${prev.system};
       };
     };
 }

@@ -77,8 +77,9 @@
         (with packages.runalyzer; nativeBuildInputs ++ buildInputs);
       };
     }) // {
-      overlay = final: prev: {
-        runalyzer = self.packages.${prev.system};
+      overlays.default = final: prev: {
+        inherit (self.packages.${prev.system})
+          runalyzer;
       };
     };
 }

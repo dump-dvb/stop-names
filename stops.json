@@ -6,7 +6,7 @@
     "generator_version": "v0.1.0"
   },
   "data": {
-    "dvb": {
+    "0": {
       "1502": [
         {
           "dhid": null,

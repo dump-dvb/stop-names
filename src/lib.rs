@@ -251,11 +251,11 @@ impl Serialize for TelegramType {
         S: ::serde::Serializer,
     {
         // Serialize the enum as a string.
-        serializer.serialize_str(match *self {
-            TelegramType::PreRegistration => "0",
-            TelegramType::Registration => "1",
-            TelegramType::DeRegistration => "2",
-            TelegramType::DoorClosed => "3",
+        serializer.serialize_i16(match *self {
+            TelegramType::PreRegistration => 0,
+            TelegramType::Registration => 1,
+            TelegramType::DeRegistration => 2,
+            TelegramType::DoorClosed => 3,
         })
     }
 }

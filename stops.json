@@ -1,497 +1,1747 @@
 {
   "document": {
     "schema_version": "1.0",
-    "date": "2022-07-08T18:45:00.567279628Z",
+    "date": "2022-07-09T23:53:35.014185972Z",
     "generator": "schema_converter",
     "generator_version": "v0.1.0"
   },
   "data": {
     "0": {
-      "1502": [
+      "3107": [
         {
           "dhid": null,
-          "name": "Hansastraße / Loessnitzstr.",
-          "telegram_type": "3",
+          "name": "Fetscherstraße / Tatzberg",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.068352,
-          "lon": 13.739317
-        }
-      ],
-      "192": [
-        {
-          "dhid": null,
-          "name": "Hauptbahnhof",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.039654,
-          "lon": 13.7337835
-        }
-      ],
-      "1238": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06691365,
-          "lon": 13.791006945
-        }
-      ],
-      "606": [
-        {
-          "dhid": null,
-          "name": "Chemnitzer/Nöthritzer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0292989,
-          "lon": 13.7071278
-        }
-      ],
-      "330": [
-        {
-          "dhid": null,
-          "name": "Schandauer Straße/Alternberger Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0394224,
-          "lon": 13.8059762
-        }
-      ],
-      "1118": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.10735560999999,
-          "lon": 13.772709021666666
-        }
-      ],
-      "120": [
-        {
-          "dhid": null,
-          "name": "Lennéstraße/Hauptallee",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.042455,
-          "lon": 13.751296
-        }
-      ],
-      "806": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04348659750001,
-          "lon": 13.6971026875
-        }
-      ],
-      "102": [
-        {
-          "dhid": null,
-          "name": "LSA Anton-/Leipziger Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.063033,
-          "lon": 13.736958
-        }
-      ],
-      "1451": [
-        {
-          "dhid": null,
-          "name": "Bürgerstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.077009,
-          "lon": 13.725092
-        }
-      ],
-      "1301": [
-        {
-          "dhid": null,
-          "name": "Koernerplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.054347,
-          "lon": 13.814161
-        }
-      ],
-      "236": [
-        {
-          "dhid": null,
-          "name": "Pillnitzer Str. / Mathildenstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050354,
-          "lon": 13.7533
-        }
-      ],
-      "132": [
-        {
-          "dhid": null,
-          "name": "Ammonstrasse / Rosenstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04729,
-          "lon": 13.721475
-        }
-      ],
-      "901": [
-        {
-          "dhid": null,
-          "name": "Weisseritzstr. / Pieschener Alle",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.060234,
-          "lon": 13.727899
-        }
-      ],
-      "1003": [
-        {
-          "dhid": null,
-          "name": "Alter Schlachthof",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06862,
-          "lon": 13.730891
-        }
-      ],
-      "1401": [
-        {
-          "dhid": null,
-          "name": "Grossenhainer Str. / Hansastraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.069169,
-          "lon": 13.738403
-        }
-      ],
-      "878": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04998894,
-          "lon": 13.681945855
-        }
-      ],
-      "305": [
-        {
-          "dhid": null,
-          "name": "Karcherallee",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0370345,
-          "lon": 13.7781818
-        }
-      ],
-      "842": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.03864723,
-          "lon": 13.63442701
-        }
-      ],
-      "233": [
-        {
-          "dhid": null,
-          "name": "Wettiner Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053502,
-          "lon": 13.724363
-        }
-      ],
-      "1409": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.084145965000005,
-          "lon": 13.727441475
-        }
-      ],
-      "1114": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.11834056625,
-          "lon": 13.78900115875
-        }
-      ],
-      "1103": [
-        {
-          "dhid": null,
-          "name": "Tannenstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0737276,
-          "lon": 13.7528442
-        }
-      ],
-      "208": [
-        {
-          "dhid": null,
-          "name": "Bodenbacher / Zwinglistraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0335,
-          "lon": 13.78281
-        }
-      ],
-      "1230": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0670667,
-          "lon": 13.787423805
-        }
-      ],
-      "357": [
-        {
-          "dhid": null,
-          "name": "Hepkestraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0327378,
-          "lon": 13.8052781
-        }
-      ],
-      "119": [
-        {
-          "dhid": null,
-          "name": "Straßburger Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.046078,
-          "lon": 13.754815
-        }
-      ],
-      "130": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04406339,
-          "lon": 13.724435805
-        }
-      ],
-      "207": [
-        {
-          "dhid": null,
-          "name": "Robert-Blum-Straße / Große Meißner Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061568,
-          "lon": 13.737761
+          "lat": 51.056047,
+          "lon": 13.777544
         }
       ],
       "1214": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.062140012499995,
           "lon": 13.853275525
         }
       ],
-      "361": [
-        {
-          "dhid": null,
-          "name": "Hueblerstr. / Berggartenstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.051124,
-          "lon": 13.803719
-        }
-      ],
-      "1194": [
+      "833": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.12673785166667,
-          "lon": 13.792369016666669
+          "lat": 51.04928632,
+          "lon": 13.687622975
         }
       ],
-      "1290": [
+      "121": [
+        {
+          "dhid": null,
+          "name": "Leneestraße/Gellerstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0383636,
+          "lon": 13.7466174
+        }
+      ],
+      "999": [
+        {
+          "dhid": null,
+          "name": "Friedrichstr. / Braeuergasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.058993,
+          "lon": 13.72093
+        }
+      ],
+      "604": [
+        {
+          "dhid": null,
+          "name": "Nürnberger/Budapester Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0369342,
+          "lon": 13.7157618
+        }
+      ],
+      "9107": [
+        {
+          "dhid": null,
+          "name": "Messering / Zur Messe",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06872,
+          "lon": 13.714412
+        }
+      ],
+      "837": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.061956151666664,
-          "lon": 13.843751438333332
+          "lat": 51.04025433,
+          "lon": 13.646847485
+        }
+      ],
+      "102": [
+        {
+          "dhid": null,
+          "name": "LSA Anton-/Leipziger Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.063033,
+          "lon": 13.736958
+        }
+      ],
+      "1507": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.087322685,
+          "lon": 13.73741767
+        }
+      ],
+      "826": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04755730333333,
+          "lon": 13.65639147
+        }
+      ],
+      "1062": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.08224976,
+          "lon": 13.706853965
         }
       ],
       "1108": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.08308789,
           "lon": 13.7609217
         }
       ],
-      "1213": [
+      "823": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.06179405666666,
-          "lon": 13.848932435
+          "lat": 51.04817596,
+          "lon": 13.6806837225
         }
       ],
-      "222": [
+      "905": [
         {
           "dhid": null,
-          "name": "Postplatz",
-          "telegram_type": "3",
+          "name": "Dresden Bremer Str.",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.050872,
-          "lon": 13.733433
+          "lat": 51.06084,
+          "lon": 13.694162
         }
       ],
-      "1094": [
+      "504": [
         {
           "dhid": null,
-          "name": "",
-          "telegram_type": "3",
+          "name": "Reichenbachstraße",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.082192265,
-          "lon": 13.69925318
+          "lat": 51.0348507,
+          "lon": 13.7312898
         }
       ],
-      "1028": [
-        {
-          "dhid": null,
-          "name": "Leipziger Str. / Moritzburger Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.073144,
-          "lon": 13.724901
-        }
-      ],
-      "83": [
+      "1114": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.045183975,
-          "lon": 13.65077374
+          "lat": 51.11834056625,
+          "lon": 13.78900115875
+        }
+      ],
+      "903": [
+        {
+          "dhid": null,
+          "name": "Dresden Alberthafen",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.062922,
+          "lon": 13.71581
+        }
+      ],
+      "1227": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0622224575,
+          "lon": 13.835972625
+        }
+      ],
+      "130": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04406339,
+          "lon": 13.724435805
+        }
+      ],
+      "103": [
+        {
+          "dhid": null,
+          "name": "Anton-/Zur Eisenbahnstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.064067,
+          "lon": 13.736935
+        }
+      ],
+      "362": [
+        {
+          "dhid": null,
+          "name": "Fetscherstraße / Pfotenhauerstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.058734,
+          "lon": 13.777413
+        }
+      ],
+      "900": [
+        {
+          "dhid": null,
+          "name": "Madeburger Str. (crossing to EnergieVerbund Arena)",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061761,
+          "lon": 13.720792
+        }
+      ],
+      "1220": [
+        {
+          "dhid": null,
+          "name": "Nordstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.066135,
+          "lon": 13.7694067
+        }
+      ],
+      "90": [
+        {
+          "dhid": null,
+          "name": "CarGoTram WV Logistikzentrum",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.05379,
+          "lon": 13.698442
+        }
+      ],
+      "132": [
+        {
+          "dhid": null,
+          "name": "Ammonstrasse / Rosenstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04729,
+          "lon": 13.721475
+        }
+      ],
+      "387": [
+        {
+          "dhid": null,
+          "name": "Seidnitz Center",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.029701,
+          "lon": 13.8024819
+        }
+      ],
+      "956": [
+        {
+          "dhid": null,
+          "name": "Schaeferstr. / Behringstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.055846,
+          "lon": 13.717046
+        }
+      ],
+      "282": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.044694015000005,
+          "lon": 13.738539675
+        }
+      ],
+      "1259": [
+        {
+          "dhid": null,
+          "name": "Fischhausstr / Heideparkstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.069317,
+          "lon": 13.787302
+        }
+      ],
+      "405": [
+        {
+          "dhid": null,
+          "name": "Caspar-David-Friedrich-Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0264364,
+          "lon": 13.7556769
+        }
+      ],
+      "1258": [
+        {
+          "dhid": null,
+          "name": "Waldschloesschenstrasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.069858,
+          "lon": 13.775674
+        }
+      ],
+      "363": [
+        {
+          "dhid": null,
+          "name": "Duererstr. / Fetscherstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050828,
+          "lon": 13.775656
+        }
+      ],
+      "123": [
+        {
+          "dhid": null,
+          "name": "Gret-Palucca-Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0389626,
+          "lon": 13.7394281
+        }
+      ],
+      "1104": [
+        {
+          "dhid": null,
+          "name": "Staufenbergallee",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0766329,
+          "lon": 13.7555318
         }
       ],
       "890": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.045330315,
           "lon": 13.66425618625
+        }
+      ],
+      "1007": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.07980361,
+          "lon": 13.71438128
+        }
+      ],
+      "1407": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.079787589999995,
+          "lon": 13.73183773
+        }
+      ],
+      "104": [
+        {
+          "dhid": null,
+          "name": "Schlesischer Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.064783,
+          "lon": 13.740362
+        }
+      ],
+      "860": [
+        {
+          "dhid": null,
+          "name": "Froebelstr. / Emerich-Ambros-Ufer",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050829,
+          "lon": 13.704106
+        }
+      ],
+      "839": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04070234,
+          "lon": 13.626167945
+        }
+      ],
+      "311": [
+        {
+          "dhid": null,
+          "name": "Marienberger Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0256244,
+          "lon": 13.8052278
+        }
+      ],
+      "281": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.047249515,
+          "lon": 13.74186642
+        }
+      ],
+      "835": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0423598575,
+          "lon": 13.6488547375
+        }
+      ],
+      "1451": [
+        {
+          "dhid": null,
+          "name": "Bürgerstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.077009,
+          "lon": 13.725092
+        }
+      ],
+      "1102": [
+        {
+          "dhid": null,
+          "name": "Bischofsweg",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.071376,
+          "lon": 13.7506816
+        }
+      ],
+      "811": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.042482225,
+          "lon": 13.68050627
+        }
+      ],
+      "1502": [
+        {
+          "dhid": null,
+          "name": "Hansastraße / Loessnitzstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.068352,
+          "lon": 13.739317
+        }
+      ],
+      "302": [
+        {
+          "dhid": null,
+          "name": "Comeniusplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0416777,
+          "lon": 13.766603
+        }
+      ],
+      "360": [
+        {
+          "dhid": null,
+          "name": "Gerokstr. / Elisenstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.053229,
+          "lon": 13.761923
+        }
+      ],
+      "1103": [
+        {
+          "dhid": null,
+          "name": "Tannenstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0737276,
+          "lon": 13.7528442
+        }
+      ],
+      "1118": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.10735560999999,
+          "lon": 13.772709021666666
+        }
+      ],
+      "109": [
+        {
+          "dhid": null,
+          "name": "Bautzner/Rothenburger",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.062925,
+          "lon": 13.751871
+        }
+      ],
+      "454": [
+        {
+          "dhid": null,
+          "name": "Dresden Grunaer Weg",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0309016,
+          "lon": 13.7803976
+        }
+      ],
+      "651": [
+        {
+          "dhid": null,
+          "name": "Nürnberger Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0323243,
+          "lon": 13.7261459
+        }
+      ],
+      "804": [
+        {
+          "dhid": null,
+          "name": "Tharandter/Kesselsdorfer Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0436693,
+          "lon": 13.7043013
+        }
+      ],
+      "1003": [
+        {
+          "dhid": null,
+          "name": "Alter Schlachthof",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06862,
+          "lon": 13.730891
+        }
+      ],
+      "1404": [
+        {
+          "dhid": null,
+          "name": "Dresden Grossenhainer Strasse / Frintz-Reuter-Strasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.07523,
+          "lon": 13.734514
+        }
+      ],
+      "207": [
+        {
+          "dhid": null,
+          "name": "Robert-Blum-Straße / Große Meißner Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061568,
+          "lon": 13.737761
+        }
+      ],
+      "119": [
+        {
+          "dhid": null,
+          "name": "Straßburger Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.046078,
+          "lon": 13.754815
+        }
+      ],
+      "135": [
+        {
+          "dhid": null,
+          "name": "Koenneritzstr. / Schweriner Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.054075,
+          "lon": 13.722238
+        }
+      ],
+      "1202": [
+        {
+          "dhid": null,
+          "name": "LSA Bautzner Straße/Pulsnitzer",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0633708,
+          "lon": 13.7578833
+        }
+      ],
+      "3176": [
+        {
+          "dhid": null,
+          "name": "Fetscherstraße / Gabelsbergerstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049781,
+          "lon": 13.77461
+        }
+      ],
+      "1401": [
+        {
+          "dhid": null,
+          "name": "Grossenhainer Str. / Hansastraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.069169,
+          "lon": 13.738403
+        }
+      ],
+      "381": [
+        {
+          "dhid": null,
+          "name": "Borsbergstr. / Spenerstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04394,
+          "lon": 13.781547
+        }
+      ],
+      "809": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04266517,
+          "lon": 13.688831585
+        }
+      ],
+      "1209": [
+        {
+          "dhid": null,
+          "name": "Dresden Wilhelminenstrasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.067198,
+          "lon": 13.789555
+        }
+      ],
+      "1276": [
+        {
+          "dhid": null,
+          "name": "Jaegerpark Heideblick",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.070416,
+          "lon": 13.788827
+        }
+      ],
+      "1238": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06691365,
+          "lon": 13.791006945
+        }
+      ],
+      "889": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04998894,
+          "lon": 13.681945855
         }
       ],
       "1206": [
         {
           "dhid": null,
           "name": "Waldschloesschen",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.067329,
           "lon": 13.776489
         }
       ],
-      "347": [
+      "134": [
         {
           "dhid": null,
-          "name": "Am Schillergarten / Tolkewitzer Str.",
-          "telegram_type": "3",
+          "name": "Koenneritzstr. / Ammonstrasse",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.050877,
-          "lon": 13.808274
+          "lat": 51.051675,
+          "lon": 13.720342
         }
       ],
-      "895": [
+      "402": [
+        {
+          "dhid": null,
+          "name": "Gerhart-Hauptmann-Straße/Tiergartenstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0374158,
+          "lon": 13.7487953
+        }
+      ],
+      "408": [
+        {
+          "dhid": null,
+          "name": "Corinthstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0213106,
+          "lon": 13.7643742
+        }
+      ],
+      "219": [
+        {
+          "dhid": null,
+          "name": "Schweriner Str. / Hertha-Lindner-Strasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.05207,
+          "lon": 13.728905
+        }
+      ],
+      "891": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0424838225,
-          "lon": 13.6846000425
+          "lat": 51.045258784,
+          "lon": 13.677790519000002
+        }
+      ],
+      "906": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061364125,
+          "lon": 13.691408235
+        }
+      ],
+      "330": [
+        {
+          "dhid": null,
+          "name": "Schandauer Straße/Alternberger Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0394224,
+          "lon": 13.8059762
+        }
+      ],
+      "115": [
+        {
+          "dhid": null,
+          "name": "Sachsenallee / Gerokstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.053918,
+          "lon": 13.758129
+        }
+      ],
+      "118": [
+        {
+          "dhid": null,
+          "name": "Striesener Str. / Pillnitzer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049758,
+          "lon": 13.757163
+        }
+      ],
+      "1094": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.082192265,
+          "lon": 13.69925318
+        }
+      ],
+      "1117": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.1229849675,
+          "lon": 13.791265846666668
+        }
+      ],
+      "222": [
+        {
+          "dhid": null,
+          "name": "Postplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050872,
+          "lon": 13.733433
+        }
+      ],
+      "1270": [
+        {
+          "dhid": null,
+          "name": "Stauffenbergalle / Hans-Oster-Strasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.075896,
+          "lon": 13.757962
+        }
+      ],
+      "83": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.045183975,
+          "lon": 13.65077374
+        }
+      ],
+      "1301": [
+        {
+          "dhid": null,
+          "name": "Koernerplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.054347,
+          "lon": 13.814161
+        }
+      ],
+      "421": [
+        {
+          "dhid": null,
+          "name": "Wasaplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.027979,
+          "lon": 13.759444
+        }
+      ],
+      "113": [
+        {
+          "dhid": null,
+          "name": "Albertbrueke / Sachsenplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.055897,
+          "lon": 13.755917
+        }
+      ],
+      "455": [
+        {
+          "dhid": null,
+          "name": "Winderbergstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0241871,
+          "lon": 13.7973314
+        }
+      ],
+      "3101": [
+        {
+          "dhid": null,
+          "name": "Niederwaldpl. / Scariastr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04447,
+          "lon": 13.807889
+        }
+      ],
+      "1210": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06428922125,
+          "lon": 13.81150926125
+        }
+      ],
+      "107": [
+        {
+          "dhid": null,
+          "name": "Albertplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.063252,
+          "lon": 13.746367
+        }
+      ],
+      "952": [
+        {
+          "dhid": null,
+          "name": "Dresden Koreanischer Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.054744,
+          "lon": 13.720228
+        }
+      ],
+      "503": [
+        {
+          "dhid": null,
+          "name": "Fritz-Löffler-Str. 16",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.035964,
+          "lon": 13.731757
+        }
+      ],
+      "831": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0397409525,
+          "lon": 13.6435573075
+        }
+      ],
+      "324": [
+        {
+          "dhid": null,
+          "name": "Fetscherplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.046367,
+          "lon": 13.770653
+        }
+      ],
+      "1045": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.082003695,
+          "lon": 13.69578353
+        }
+      ],
+      "1008": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.080657075,
+          "lon": 13.71292477
+        }
+      ],
+      "1208": [
+        {
+          "dhid": null,
+          "name": "Bautzner Str. / Fischhausstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.066964,
+          "lon": 13.785562
+        }
+      ],
+      "1111": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.1101287675,
+          "lon": 13.7752689425
+        }
+      ],
+      "1191": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.109486845,
+          "lon": 13.77459373
+        }
+      ],
+      "361": [
+        {
+          "dhid": null,
+          "name": "Hueblerstr. / Berggartenstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.051124,
+          "lon": 13.803719
+        }
+      ],
+      "1257": [
+        {
+          "dhid": null,
+          "name": "Marienallee",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.073226,
+          "lon": 13.765502
+        }
+      ],
+      "1409": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.084145965000005,
+          "lon": 13.727441475
         }
       ],
       "299": [
         {
           "dhid": null,
           "name": "Wilsdruffer Str. / Galeriestr.",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.050153,
           "lon": 13.73909
+        }
+      ],
+      "1116": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.11486871,
+          "lon": 13.784718468333333
+        }
+      ],
+      "1472": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.080893985,
+          "lon": 13.72412844
+        }
+      ],
+      "1550": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.086485555,
+          "lon": 13.728946205
+        }
+      ],
+      "1006": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0775701875,
+          "lon": 13.7166028425
+        }
+      ],
+      "1226": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06226885625,
+          "lon": 13.83829622
+        }
+      ],
+      "1105": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.07831487999999,
+          "lon": 13.75733801
+        }
+      ],
+      "1295": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061952885,
+          "lon": 13.8311863925
+        }
+      ],
+      "120": [
+        {
+          "dhid": null,
+          "name": "Lennéstraße/Hauptallee",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.042455,
+          "lon": 13.751296
+        }
+      ],
+      "395": [
+        {
+          "dhid": null,
+          "name": "Gerokstr. 16",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.053111,
+          "lon": 13.763297
+        }
+      ],
+      "234": [
+        {
+          "dhid": null,
+          "name": "Freiberger Str. / Freiberger Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050296,
+          "lon": 13.72517
+        }
+      ],
+      "136": [
+        {
+          "dhid": null,
+          "name": "Könneritzstraße/Jahnstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.055101,
+          "lon": 13.723554
+        }
+      ],
+      "902": [
+        {
+          "dhid": null,
+          "name": "Magdeburger Str. / Weisseritzstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.058725,
+          "lon": 13.72606
+        }
+      ],
+      "202": [
+        {
+          "dhid": null,
+          "name": "Georgplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.046395,
+          "lon": 13.741428
+        }
+      ],
+      "220": [
+        {
+          "dhid": null,
+          "name": "Freiberger Str. / Hertha-Lindner-Strasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050873,
+          "lon": 13.729145
+        }
+      ],
+      "904": [
+        {
+          "dhid": null,
+          "name": "Waltherstr. / Bremer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061586,
+          "lon": 13.712814
+        }
+      ],
+      "1459": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.081157255,
+          "lon": 13.71956018
+        }
+      ],
+      "393": [
+        {
+          "dhid": null,
+          "name": "Borsbergstr. / Mosenstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.044786,
+          "lon": 13.777631
+        }
+      ],
+      "895": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0424838225,
+          "lon": 13.6846000425
+        }
+      ],
+      "1213": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.06179405666666,
+          "lon": 13.848932435
+        }
+      ],
+      "1113": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.1159970875,
+          "lon": 13.7866034275
         }
       ],
       "327": [
         {
           "dhid": null,
           "name": "Schandauer Str. / Bergmannstr.",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.043311,
           "lon": 13.788805
         }
       ],
-      "138": [
+      "1271": [
         {
           "dhid": null,
-          "name": "Maxstrasse / Koenneritzstr.",
-          "telegram_type": "3",
+          "name": "Landesdirektion Sachsen",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.057033,
-          "lon": 13.726101
+          "lat": 51.071685,
+          "lon": 13.770473
+        }
+      ],
+      "192": [
+        {
+          "dhid": null,
+          "name": "Hauptbahnhof",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.039654,
+          "lon": 13.7337835
+        }
+      ],
+      "126": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04061755,
+          "lon": 13.73406108
+        }
+      ],
+      "206": [
+        {
+          "dhid": null,
+          "name": "Neustädter Markt",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.057757,
+          "lon": 13.741322
+        }
+      ],
+      "1253": [
+        {
+          "dhid": null,
+          "name": "Rothenburger Str. / Louisenstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.066338,
+          "lon": 13.753906
+        }
+      ],
+      "111": [
+        {
+          "dhid": null,
+          "name": "Melanchthonstr. / Hoyerswerdaer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.060455,
+          "lon": 13.75262
+        }
+      ],
+      "401": [
+        {
+          "dhid": null,
+          "name": "Lenneplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0380162,
+          "lon": 13.7474113
+        }
+      ],
+      "862": [
+        {
+          "dhid": null,
+          "name": "Dresden Pennricher Strasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049138,
+          "lon": 13.692045
+        }
+      ],
+      "842": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.03864723,
+          "lon": 13.63442701
+        }
+      ],
+      "861": [
+        {
+          "dhid": null,
+          "name": "Dresden Burgkstrasse",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04917,
+          "lon": 13.696968
+        }
+      ],
+      "122": [
+        {
+          "dhid": null,
+          "name": "Wiener Str. / Franklinstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.037239,
+          "lon": 13.744522
+        }
+      ],
+      "236": [
+        {
+          "dhid": null,
+          "name": "Pillnitzer Str. / Mathildenstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050354,
+          "lon": 13.7533
+        }
+      ],
+      "195": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.041284684999994,
+          "lon": 13.73245557
+        }
+      ],
+      "322": [
+        {
+          "dhid": null,
+          "name": "Striesener Str. / Hans-Grundig-Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049177,
+          "lon": 13.760643
+        }
+      ],
+      "1101": [
+        {
+          "dhid": null,
+          "name": "Louisenstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0680048,
+          "lon": 13.7477077
+        }
+      ],
+      "506": [
+        {
+          "dhid": null,
+          "name": "Fritz-Foerster-Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0301741,
+          "lon": 13.730746
         }
       ],
       "307": [
         {
           "dhid": null,
           "name": "Stübelallee/Zwinglistraße",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.0346967,
           "lon": 13.7840746
         }
       ],
-      "435": [
+      "953": [
         {
           "dhid": null,
-          "name": "Moränenende/Wilhelm-Liebknecht-Straße",
-          "telegram_type": "3",
+          "name": "Dresden Walterstrasse",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0125937,
-          "lon": 13.8100717
+          "lat": 51.058158,
+          "lon": 13.710172
+        }
+      ],
+      "1121": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.13494707000001,
+          "lon": 13.796171475
+        }
+      ],
+      "453": [
+        {
+          "dhid": null,
+          "name": "Karchallee/Winterbergstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0331947,
+          "lon": 13.7745916
+        }
+      ],
+      "806": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04348659750001,
+          "lon": 13.6971026875
+        }
+      ],
+      "1290": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061956151666664,
+          "lon": 13.843751438333332
+        }
+      ],
+      "138": [
+        {
+          "dhid": null,
+          "name": "Maxstrasse / Koenneritzstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.057033,
+          "lon": 13.726101
+        }
+      ],
+      "139": [
+        {
+          "dhid": null,
+          "name": "Dresden Kongresszentrum",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.057972,
+          "lon": 13.727255
+        }
+      ],
+      "1075": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.08199172,
+          "lon": 13.69628566
+        }
+      ],
+      "959": [
+        {
+          "dhid": null,
+          "name": "Bahnhof Mitte / Weisseritzstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.055803,
+          "lon": 13.722244
+        }
+      ],
+      "1254": [
+        {
+          "dhid": null,
+          "name": "Goerlitzer Str. / Bischofsweg",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.069746,
+          "lon": 13.75613
+        }
+      ],
+      "1471": [
+        {
+          "dhid": null,
+          "name": "Bürgerstraße / Harkortstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.076321,
+          "lon": 13.729426
+        }
+      ],
+      "841": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.038741395,
+          "lon": 13.635999915
+        }
+      ],
+      "805": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04366538,
+          "lon": 13.698491065
+        }
+      ],
+      "606": [
+        {
+          "dhid": null,
+          "name": "Chemnitzer/Nöthritzer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0292989,
+          "lon": 13.7071278
+        }
+      ],
+      "204": [
+        {
+          "dhid": null,
+          "name": "Rathenauplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.051463,
+          "lon": 13.747008
+        }
+      ],
+      "208": [
+        {
+          "dhid": null,
+          "name": "Bodenbacher / Zwinglistraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0335,
+          "lon": 13.78281
+        }
+      ],
+      "859": [
+        {
+          "dhid": null,
+          "name": "Waltherstr. / Froebelstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.051679,
+          "lon": 13.707432
+        }
+      ],
+      "223": [
+        {
+          "dhid": null,
+          "name": "Wilsdruffer Str. / Schlossstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050486,
+          "lon": 13.737083
+        }
+      ],
+      "1154": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.077326475,
+          "lon": 13.752282054999998
+        }
+      ],
+      "1203": [
+        {
+          "dhid": null,
+          "name": "Pulsnitzer Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.063314,
+          "lon": 13.757515
+        }
+      ],
+      "1408": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.081902035,
+          "lon": 13.73076943
+        }
+      ],
+      "892": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04323042,
+          "lon": 13.67999197
+        }
+      ],
+      "995": [
+        {
+          "dhid": null,
+          "name": "Dresden Hamburger Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.059006,
+          "lon": 13.703476
+        }
+      ],
+      "429": [
+        {
+          "dhid": null,
+          "name": "Moränenende/Breitscheidstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0135254,
+          "lon": 13.8110393
+        }
+      ],
+      "205": [
+        {
+          "dhid": null,
+          "name": "Carolaplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.05741,
+          "lon": 13.745794
+        }
+      ],
+      "280": [
+        {
+          "dhid": null,
+          "name": "Freiberger Str. / Tiefgarage WTC",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049675,
+          "lon": 13.722087
+        }
+      ],
+      "1109": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.1000255675,
+          "lon": 13.76904155
+        }
+      ],
+      "1004": [
+        {
+          "dhid": null,
+          "name": "Oschatzer Straße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.07464,
+          "lon": 13.722871
+        }
+      ],
+      "552": [
+        {
+          "dhid": null,
+          "name": "Zellescher Weg",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0284316,
+          "lon": 13.745951
+        }
+      ],
+      "852": [
+        {
+          "dhid": null,
+          "name": "Dresden Cottaer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050072,
+          "lon": 13.712673
         }
       ],
       "1014": [
         {
           "dhid": null,
           "name": "Alexander-Puschkin-Platz",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.071072,
           "lon": 13.72824
@@ -501,1820 +1751,570 @@
         {
           "dhid": null,
           "name": "Fritz-Löffler-Straße/Stehlener Straße",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.0389726,
           "lon": 13.7332578
-        }
-      ],
-      "1291": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0635244525,
-          "lon": 13.822618155
         }
       ],
       "1205": [
         {
           "dhid": null,
           "name": "Weintraubenstr. / Melanchthonstr.",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.061179,
           "lon": 13.754711
         }
       ],
-      "1254": [
+      "305": [
         {
           "dhid": null,
-          "name": "Goerlitzer Str. / Bischofsweg",
-          "telegram_type": "3",
+          "name": "Karcherallee",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.069746,
-          "lon": 13.75613
-        }
-      ],
-      "831": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0397409525,
-          "lon": 13.6435573075
-        }
-      ],
-      "1209": [
-        {
-          "dhid": null,
-          "name": "Dresden Wilhelminenstrasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.067198,
-          "lon": 13.789555
-        }
-      ],
-      "838": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04042498,
-          "lon": 13.63026488
-        }
-      ],
-      "402": [
-        {
-          "dhid": null,
-          "name": "Gerhart-Hauptmann-Straße/Tiergartenstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0374158,
-          "lon": 13.7487953
-        }
-      ],
-      "891": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.045258784,
-          "lon": 13.677790519000002
-        }
-      ],
-      "1113": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.1159970875,
-          "lon": 13.7866034275
-        }
-      ],
-      "504": [
-        {
-          "dhid": null,
-          "name": "Reichenbachstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0348507,
-          "lon": 13.7312898
-        }
-      ],
-      "223": [
-        {
-          "dhid": null,
-          "name": "Wilsdruffer Str. / Schlossstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050486,
-          "lon": 13.737083
-        }
-      ],
-      "651": [
-        {
-          "dhid": null,
-          "name": "Nürnberger Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0323243,
-          "lon": 13.7261459
-        }
-      ],
-      "905": [
-        {
-          "dhid": null,
-          "name": "Dresden Bremer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06084,
-          "lon": 13.694162
-        }
-      ],
-      "401": [
-        {
-          "dhid": null,
-          "name": "Lenneplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0380162,
-          "lon": 13.7474113
-        }
-      ],
-      "103": [
-        {
-          "dhid": null,
-          "name": "Anton-/Zur Eisenbahnstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.064067,
-          "lon": 13.736935
-        }
-      ],
-      "833": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04928632,
-          "lon": 13.687622975
-        }
-      ],
-      "1191": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.109486845,
-          "lon": 13.77459373
-        }
-      ],
-      "219": [
-        {
-          "dhid": null,
-          "name": "Schweriner Str. / Hertha-Lindner-Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.05207,
-          "lon": 13.728905
-        }
-      ],
-      "292": [
-        {
-          "dhid": null,
-          "name": "St. Petersburger Str. 21",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.045149,
-          "lon": 13.739975
-        }
-      ],
-      "280": [
-        {
-          "dhid": null,
-          "name": "Freiberger Str. / Tiefgarage WTC",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049675,
-          "lon": 13.722087
-        }
-      ],
-      "552": [
-        {
-          "dhid": null,
-          "name": "Zellescher Weg",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0284316,
-          "lon": 13.745951
-        }
-      ],
-      "3402": [
-        {
-          "dhid": null,
-          "name": "Dresden Johannisfriedhof",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0368414,
-          "lon": 13.8125265
-        }
-      ],
-      "118": [
-        {
-          "dhid": null,
-          "name": "Striesener Str. / Pillnitzer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049758,
-          "lon": 13.757163
-        }
-      ],
-      "1008": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.080657075,
-          "lon": 13.71292477
-        }
-      ],
-      "1274": [
-        {
-          "dhid": null,
-          "name": "Bautzner Str. / Jaegerstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.066702,
-          "lon": 13.772301
-        }
-      ],
-      "133": [
-        {
-          "dhid": null,
-          "name": "Ammonstrasse / Freiberger Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049358,
-          "lon": 13.72069
-        }
-      ],
-      "202": [
-        {
-          "dhid": null,
-          "name": "Georgplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.046395,
-          "lon": 13.741428
-        }
-      ],
-      "904": [
-        {
-          "dhid": null,
-          "name": "Waltherstr. / Bremer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061586,
-          "lon": 13.712814
-        }
-      ],
-      "376": [
-        {
-          "dhid": null,
-          "name": "Blasewitzer Str. / Augsburger Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053259,
-          "lon": 13.781579
-        }
-      ],
-      "3106": [
-        {
-          "dhid": null,
-          "name": "Loschwitzer Str. / Lene-Glatzer-Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053834,
-          "lon": 13.792404
-        }
-      ],
-      "346": [
-        {
-          "dhid": null,
-          "name": "Schillerplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.052175,
-          "lon": 13.805205
-        }
-      ],
-      "121": [
-        {
-          "dhid": null,
-          "name": "Leneestraße/Gellerstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0383636,
-          "lon": 13.7466174
-        }
-      ],
-      "139": [
-        {
-          "dhid": null,
-          "name": "Dresden Kongresszentrum",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.057972,
-          "lon": 13.727255
-        }
-      ],
-      "363": [
-        {
-          "dhid": null,
-          "name": "Duererstr. / Fetscherstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050828,
-          "lon": 13.775656
-        }
-      ],
-      "951": [
-        {
-          "dhid": null,
-          "name": "Weisseritzstr. / Friedrichstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.057656,
-          "lon": 13.724963
-        }
-      ],
-      "136": [
-        {
-          "dhid": null,
-          "name": "Könneritzstraße/Jahnstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.055101,
-          "lon": 13.723554
-        }
-      ],
-      "861": [
-        {
-          "dhid": null,
-          "name": "Dresden Burgkstrasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04917,
-          "lon": 13.696968
-        }
-      ],
-      "1226": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06226885625,
-          "lon": 13.83829622
-        }
-      ],
-      "1253": [
-        {
-          "dhid": null,
-          "name": "Rothenburger Str. / Louisenstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.066338,
-          "lon": 13.753906
-        }
-      ],
-      "809": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04266517,
-          "lon": 13.688831585
-        }
-      ],
-      "804": [
-        {
-          "dhid": null,
-          "name": "Tharandter/Kesselsdorfer Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0436693,
-          "lon": 13.7043013
-        }
-      ],
-      "1407": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.079787589999995,
-          "lon": 13.73183773
-        }
-      ],
-      "453": [
-        {
-          "dhid": null,
-          "name": "Karchallee/Winterbergstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0331947,
-          "lon": 13.7745916
-        }
-      ],
-      "839": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04070234,
-          "lon": 13.626167945
-        }
-      ],
-      "1258": [
-        {
-          "dhid": null,
-          "name": "Waldschloesschenstrasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.069858,
-          "lon": 13.775674
-        }
-      ],
-      "455": [
-        {
-          "dhid": null,
-          "name": "Winderbergstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0241871,
-          "lon": 13.7973314
-        }
-      ],
-      "841": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.038741395,
-          "lon": 13.635999915
-        }
-      ],
-      "1459": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.081157255,
-          "lon": 13.71956018
-        }
-      ],
-      "109": [
-        {
-          "dhid": null,
-          "name": "Bautzner/Rothenburger",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.062925,
-          "lon": 13.751871
-        }
-      ],
-      "902": [
-        {
-          "dhid": null,
-          "name": "Magdeburger Str. / Weisseritzstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.058725,
-          "lon": 13.72606
-        }
-      ],
-      "1109": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.1000255675,
-          "lon": 13.76904155
-        }
-      ],
-      "903": [
-        {
-          "dhid": null,
-          "name": "Dresden Alberthafen",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.062922,
-          "lon": 13.71581
-        }
-      ],
-      "1154": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.077326475,
-          "lon": 13.752282054999998
-        }
-      ],
-      "328": [
-        {
-          "dhid": null,
-          "name": "Pohlandplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.042901,
-          "lon": 13.795439
-        }
-      ],
-      "393": [
-        {
-          "dhid": null,
-          "name": "Borsbergstr. / Mosenstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.044786,
-          "lon": 13.777631
-        }
-      ],
-      "900": [
-        {
-          "dhid": null,
-          "name": "Madeburger Str. (crossing to EnergieVerbund Arena)",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061761,
-          "lon": 13.720792
-        }
-      ],
-      "405": [
-        {
-          "dhid": null,
-          "name": "Caspar-David-Friedrich-Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0264364,
-          "lon": 13.7556769
-        }
-      ],
-      "1550": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.086485555,
-          "lon": 13.728946205
-        }
-      ],
-      "195": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.041284684999994,
-          "lon": 13.73245557
-        }
-      ],
-      "134": [
-        {
-          "dhid": null,
-          "name": "Koenneritzstr. / Ammonstrasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.051675,
-          "lon": 13.720342
-        }
-      ],
-      "3176": [
-        {
-          "dhid": null,
-          "name": "Fetscherstraße / Gabelsbergerstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049781,
-          "lon": 13.77461
-        }
-      ],
-      "360": [
-        {
-          "dhid": null,
-          "name": "Gerokstr. / Elisenstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053229,
-          "lon": 13.761923
-        }
-      ],
-      "3101": [
-        {
-          "dhid": null,
-          "name": "Niederwaldpl. / Scariastr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04447,
-          "lon": 13.807889
-        }
-      ],
-      "1293": [
-        {
-          "dhid": null,
-          "name": "Hans-Oster-Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.074884,
-          "lon": 13.760771
-        }
-      ],
-      "1002": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0652452,
-          "lon": 13.7347261
-        }
-      ],
-      "995": [
-        {
-          "dhid": null,
-          "name": "Dresden Hamburger Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.059006,
-          "lon": 13.703476
-        }
-      ],
-      "1271": [
-        {
-          "dhid": null,
-          "name": "Landesdirektion Sachsen",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.071685,
-          "lon": 13.770473
-        }
-      ],
-      "362": [
-        {
-          "dhid": null,
-          "name": "Fetscherstraße / Pfotenhauerstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.058734,
-          "lon": 13.777413
-        }
-      ],
-      "1270": [
-        {
-          "dhid": null,
-          "name": "Stauffenbergalle / Hans-Oster-Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.075896,
-          "lon": 13.757962
-        }
-      ],
-      "268": [
-        {
-          "dhid": null,
-          "name": "Albertplatz Süd",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061454,
-          "lon": 13.746032
-        }
-      ],
-      "298": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.05978856,
-          "lon": 13.74601982
-        }
-      ],
-      "9109": [
-        {
-          "dhid": null,
-          "name": "LSA Dresden Messe Gleisschleife",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.071548,
-          "lon": 13.714604
-        }
-      ],
-      "1210": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06428922125,
-          "lon": 13.81150926125
-        }
-      ],
-      "123": [
-        {
-          "dhid": null,
-          "name": "Gret-Palucca-Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0389626,
-          "lon": 13.7394281
-        }
-      ],
-      "220": [
-        {
-          "dhid": null,
-          "name": "Freiberger Str. / Hertha-Lindner-Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050873,
-          "lon": 13.729145
-        }
-      ],
-      "310": [
-        {
-          "dhid": null,
-          "name": "Rennplatzstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0272979,
-          "lon": 13.800432
-        }
-      ],
-      "1102": [
-        {
-          "dhid": null,
-          "name": "Bischofsweg",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.071376,
-          "lon": 13.7506816
-        }
-      ],
-      "1295": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061952885,
-          "lon": 13.8311863925
-        }
-      ],
-      "1501": [
-        {
-          "dhid": null,
-          "name": "Eisenbahnstr. / Hansastraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.065861,
-          "lon": 13.739137
-        }
-      ],
-      "1276": [
-        {
-          "dhid": null,
-          "name": "Jaegerpark Heideblick",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.070416,
-          "lon": 13.788827
+          "lat": 51.0370345,
+          "lon": 13.7781818
         }
       ],
       "957": [
         {
           "dhid": null,
           "name": "Berliner str. / Loebtauer str.",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.054055,
           "lon": 13.719069
+        }
+      ],
+      "1230": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0670667,
+          "lon": 13.787423805
         }
       ],
       "1151": [
         {
           "dhid": null,
           "name": "Bischofsplatz",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.071993,
           "lon": 13.746973
         }
       ],
-      "408": [
+      "1293": [
         {
           "dhid": null,
-          "name": "Corinthstraße",
-          "telegram_type": "3",
+          "name": "Hans-Oster-Strasse",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0213106,
-          "lon": 13.7643742
+          "lat": 51.074884,
+          "lon": 13.760771
         }
       ],
-      "112": [
+      "3106": [
         {
           "dhid": null,
-          "name": "Rosa-Luxemburg-Platz",
-          "telegram_type": "3",
+          "name": "Loschwitzer Str. / Lene-Glatzer-Str.",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.059115,
-          "lon": 13.752996
+          "lat": 51.053834,
+          "lon": 13.792404
         }
       ],
-      "206": [
-        {
-          "dhid": null,
-          "name": "Neustädter Markt",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.057757,
-          "lon": 13.741322
-        }
-      ],
-      "126": [
+      "298": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.04061755,
-          "lon": 13.73406108
-        }
-      ],
-      "960": [
-        {
-          "dhid": null,
-          "name": "Bahnhof Mitte / Koenneritzstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.055086,
-          "lon": 13.723567
-        }
-      ],
-      "802": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04530746,
-          "lon": 13.711005065
-        }
-      ],
-      "835": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0423598575,
-          "lon": 13.6488547375
-        }
-      ],
-      "1220": [
-        {
-          "dhid": null,
-          "name": "Nordstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.066135,
-          "lon": 13.7694067
-        }
-      ],
-      "1208": [
-        {
-          "dhid": null,
-          "name": "Bautzner Str. / Fischhausstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.066964,
-          "lon": 13.785562
-        }
-      ],
-      "421": [
-        {
-          "dhid": null,
-          "name": "Wasaplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.027979,
-          "lon": 13.759444
-        }
-      ],
-      "403": [
-        {
-          "dhid": null,
-          "name": "Stehlener Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0331333,
-          "lon": 13.7488785
-        }
-      ],
-      "952": [
-        {
-          "dhid": null,
-          "name": "Dresden Koreanischer Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.054744,
-          "lon": 13.720228
-        }
-      ],
-      "862": [
-        {
-          "dhid": null,
-          "name": "Dresden Pennricher Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049138,
-          "lon": 13.692045
-        }
-      ],
-      "205": [
-        {
-          "dhid": null,
-          "name": "Carolaplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.05741,
-          "lon": 13.745794
-        }
-      ],
-      "906": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.061364125,
-          "lon": 13.691408235
-        }
-      ],
-      "115": [
-        {
-          "dhid": null,
-          "name": "Sachsenallee / Gerokstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053918,
-          "lon": 13.758129
-        }
-      ],
-      "1101": [
-        {
-          "dhid": null,
-          "name": "Louisenstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0680048,
-          "lon": 13.7477077
-        }
-      ],
-      "1203": [
-        {
-          "dhid": null,
-          "name": "Pulsnitzer Straße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.063314,
-          "lon": 13.757515
-        }
-      ],
-      "395": [
-        {
-          "dhid": null,
-          "name": "Gerokstr. 16",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053111,
-          "lon": 13.763297
-        }
-      ],
-      "201": [
-        {
-          "dhid": null,
-          "name": "St. Petersburger Straße/Pulmann-Newa",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.042306,
-          "lon": 13.736348
-        }
-      ],
-      "3150": [
-        {
-          "dhid": null,
-          "name": "Fetscherstraße / Fiedlerstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.05395,
-          "lon": 13.777849
-        }
-      ],
-      "1045": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.082003695,
-          "lon": 13.69578353
-        }
-      ],
-      "113": [
-        {
-          "dhid": null,
-          "name": "Albertbrueke / Sachsenplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.055897,
-          "lon": 13.755917
-        }
-      ],
-      "852": [
-        {
-          "dhid": null,
-          "name": "Dresden Cottaer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050072,
-          "lon": 13.712673
-        }
-      ],
-      "1062": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.08224976,
-          "lon": 13.706853965
-        }
-      ],
-      "135": [
-        {
-          "dhid": null,
-          "name": "Koenneritzstr. / Schweriner Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.054075,
-          "lon": 13.722238
-        }
-      ],
-      "200": [
-        {
-          "dhid": null,
-          "name": "Synagoge",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.052611,
-          "lon": 13.747128
-        }
-      ],
-      "381": [
-        {
-          "dhid": null,
-          "name": "Borsbergstr. / Spenerstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04394,
-          "lon": 13.781547
-        }
-      ],
-      "1472": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.080893985,
-          "lon": 13.72412844
-        }
-      ],
-      "811": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.042482225,
-          "lon": 13.68050627
-        }
-      ],
-      "387": [
-        {
-          "dhid": null,
-          "name": "Seidnitz Center",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.029701,
-          "lon": 13.8024819
-        }
-      ],
-      "282": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.044694015000005,
-          "lon": 13.738539675
-        }
-      ],
-      "1408": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.081902035,
-          "lon": 13.73076943
-        }
-      ],
-      "837": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04025433,
-          "lon": 13.646847485
-        }
-      ],
-      "459": [
-        {
-          "dhid": null,
-          "name": "Mügelner Straße/Moränenende",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0112617,
-          "lon": 13.8079246
-        }
-      ],
-      "203": [
-        {
-          "dhid": null,
-          "name": "Pirnaischer Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049434,
-          "lon": 13.744379
-        }
-      ],
-      "308": [
-        {
-          "dhid": null,
-          "name": "Zwinglistraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0340625,
-          "lon": 13.7833343
-        }
-      ],
-      "452": [
-        {
-          "dhid": null,
-          "name": "Tiergartenstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0298346,
-          "lon": 13.771196
-        }
-      ],
-      "823": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04817596,
-          "lon": 13.6806837225
-        }
-      ],
-      "104": [
-        {
-          "dhid": null,
-          "name": "Schlesischer Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.064783,
-          "lon": 13.740362
-        }
-      ],
-      "1121": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.13494707000001,
-          "lon": 13.796171475
+          "lat": 51.05978856,
+          "lon": 13.74601982
         }
       ],
       "406": [
         {
           "dhid": null,
           "name": "Heinrich-Zille-Straße",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.0255861,
           "lon": 13.7572326
         }
       ],
-      "3107": [
+      "435": [
         {
           "dhid": null,
-          "name": "Fetscherstraße / Tatzberg",
-          "telegram_type": "3",
+          "name": "Moränenende/Wilhelm-Liebknecht-Straße",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.056047,
-          "lon": 13.777544
+          "lat": 51.0125937,
+          "lon": 13.8100717
         }
       ],
-      "860": [
+      "357": [
         {
           "dhid": null,
-          "name": "Froebelstr. / Emerich-Ambros-Ufer",
-          "telegram_type": "3",
+          "name": "Hepkestraße",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.050829,
-          "lon": 13.704106
+          "lat": 51.0327378,
+          "lon": 13.8052781
         }
       ],
-      "805": [
+      "459": [
         {
           "dhid": null,
-          "name": "",
-          "telegram_type": "3",
+          "name": "Mügelner Straße/Moränenende",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.04366538,
-          "lon": 13.698491065
-        }
-      ],
-      "604": [
-        {
-          "dhid": null,
-          "name": "Nürnberger/Budapester Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0369342,
-          "lon": 13.7157618
-        }
-      ],
-      "1105": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.07831487999999,
-          "lon": 13.75733801
-        }
-      ],
-      "1115": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.1160990425,
-          "lon": 13.78678982
-        }
-      ],
-      "1123": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.09477669,
-          "lon": 13.7666500925
-        }
-      ],
-      "454": [
-        {
-          "dhid": null,
-          "name": "Dresden Grunaer Weg",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0309016,
-          "lon": 13.7803976
-        }
-      ],
-      "889": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04998894,
-          "lon": 13.681945855
-        }
-      ],
-      "1470": [
-        {
-          "dhid": null,
-          "name": "Rathaus Pieschen",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.077414,
-          "lon": 13.721187
-        }
-      ],
-      "378": [
-        {
-          "dhid": null,
-          "name": "Königsheimplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.053808,
-          "lon": 13.786601
-        }
-      ],
-      "107": [
-        {
-          "dhid": null,
-          "name": "Albertplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.063252,
-          "lon": 13.746367
-        }
-      ],
-      "234": [
-        {
-          "dhid": null,
-          "name": "Freiberger Str. / Freiberger Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.050296,
-          "lon": 13.72517
-        }
-      ],
-      "851": [
-        {
-          "dhid": null,
-          "name": "Löbtauer Straße/Fröbelstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0500279,
-          "lon": 13.7126293
-        }
-      ],
-      "1257": [
-        {
-          "dhid": null,
-          "name": "Marienallee",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.073226,
-          "lon": 13.765502
-        }
-      ],
-      "1116": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.11486871,
-          "lon": 13.784718468333333
-        }
-      ],
-      "1075": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.08199172,
-          "lon": 13.69628566
-        }
-      ],
-      "1504": [
-        {
-          "dhid": null,
-          "name": "Dresden Grossenhainer Platz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.074117,
-          "lon": 13.738611
-        }
-      ],
-      "953": [
-        {
-          "dhid": null,
-          "name": "Dresden Walterstrasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.058158,
-          "lon": 13.710172
-        }
-      ],
-      "108": [
-        {
-          "dhid": null,
-          "name": "Albertplatz West",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.064241,
-          "lon": 13.744951
-        }
-      ],
-      "429": [
-        {
-          "dhid": null,
-          "name": "Moränenende/Breitscheidstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0135254,
-          "lon": 13.8110393
-        }
-      ],
-      "1007": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.07980361,
-          "lon": 13.71438128
+          "lat": 51.0112617,
+          "lon": 13.8079246
         }
       ],
       "808": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.04308827,
           "lon": 13.69443236
         }
       ],
-      "228": [
+      "133": [
         {
           "dhid": null,
-          "name": "Dippoldiswalder Platz",
-          "telegram_type": "3",
+          "name": "Ammonstrasse / Freiberger Str.",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.046909,
-          "lon": 13.734702
+          "lat": 51.049358,
+          "lon": 13.72069
         }
       ],
-      "311": [
+      "310": [
         {
           "dhid": null,
-          "name": "Marienberger Straße",
-          "telegram_type": "3",
+          "name": "Rennplatzstraße",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0256244,
-          "lon": 13.8052278
+          "lat": 51.0272979,
+          "lon": 13.800432
         }
       ],
-      "204": [
+      "403": [
         {
           "dhid": null,
-          "name": "Rathenauplatz",
-          "telegram_type": "3",
+          "name": "Stehlener Platz",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.051463,
-          "lon": 13.747008
+          "lat": 51.0331333,
+          "lon": 13.7488785
         }
       ],
-      "90": [
+      "378": [
         {
           "dhid": null,
-          "name": "CarGoTram WV Logistikzentrum",
-          "telegram_type": "3",
+          "name": "Königsheimplatz",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.05379,
-          "lon": 13.698442
-        }
-      ],
-      "1259": [
-        {
-          "dhid": null,
-          "name": "Fischhausstr / Heideparkstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.069317,
-          "lon": 13.787302
-        }
-      ],
-      "1507": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.087322685,
-          "lon": 13.73741767
-        }
-      ],
-      "1111": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.1101287675,
-          "lon": 13.7752689425
-        }
-      ],
-      "322": [
-        {
-          "dhid": null,
-          "name": "Striesener Str. / Hans-Grundig-Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.049177,
-          "lon": 13.760643
-        }
-      ],
-      "281": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.047249515,
-          "lon": 13.74186642
+          "lat": 51.053808,
+          "lon": 13.786601
         }
       ],
       "88": [
         {
           "dhid": null,
           "name": "",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.04595325,
           "lon": 13.651904465
         }
       ],
-      "956": [
+      "9109": [
         {
           "dhid": null,
-          "name": "Schaeferstr. / Behringstr.",
-          "telegram_type": "3",
+          "name": "LSA Dresden Messe Gleisschleife",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.055846,
-          "lon": 13.717046
+          "lat": 51.071548,
+          "lon": 13.714604
         }
       ],
-      "892": [
+      "1501": [
         {
           "dhid": null,
-          "name": "",
-          "telegram_type": "3",
+          "name": "Eisenbahnstr. / Hansastraße",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.04323042,
-          "lon": 13.67999197
+          "lat": 51.065861,
+          "lon": 13.739137
         }
       ],
-      "506": [
+      "233": [
         {
           "dhid": null,
-          "name": "Fritz-Foerster-Platz",
-          "telegram_type": "3",
+          "name": "Wettiner Platz",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0301741,
-          "lon": 13.730746
+          "lat": 51.053502,
+          "lon": 13.724363
         }
       ],
-      "1117": [
+      "1504": [
         {
           "dhid": null,
-          "name": "",
-          "telegram_type": "3",
+          "name": "Dresden Grossenhainer Platz",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.1229849675,
-          "lon": 13.791265846666668
+          "lat": 51.074117,
+          "lon": 13.738611
         }
       ],
-      "122": [
+      "228": [
         {
           "dhid": null,
-          "name": "Wiener Str. / Franklinstr.",
-          "telegram_type": "3",
+          "name": "Dippoldiswalder Platz",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.037239,
-          "lon": 13.744522
+          "lat": 51.046909,
+          "lon": 13.734702
         }
       ],
-      "1004": [
+      "1470": [
         {
           "dhid": null,
-          "name": "Oschatzer Straße",
-          "telegram_type": "3",
+          "name": "Rathaus Pieschen",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.07464,
-          "lon": 13.722871
+          "lat": 51.077414,
+          "lon": 13.721187
         }
       ],
-      "1406": [
+      "108": [
         {
           "dhid": null,
-          "name": "Liststraße",
-          "telegram_type": "3",
+          "name": "Albertplatz West",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.077362,
-          "lon": 13.732538
+          "lat": 51.064241,
+          "lon": 13.744951
         }
       ],
-      "1006": [
+      "376": [
         {
           "dhid": null,
-          "name": "",
-          "telegram_type": "3",
+          "name": "Blasewitzer Str. / Augsburger Str.",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0775701875,
-          "lon": 13.7166028425
-        }
-      ],
-      "1202": [
-        {
-          "dhid": null,
-          "name": "LSA Bautzner Straße/Pulsnitzer",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0633708,
-          "lon": 13.7578833
-        }
-      ],
-      "826": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.04755730333333,
-          "lon": 13.65639147
-        }
-      ],
-      "9107": [
-        {
-          "dhid": null,
-          "name": "Messering / Zur Messe",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.06872,
-          "lon": 13.714412
-        }
-      ],
-      "999": [
-        {
-          "dhid": null,
-          "name": "Friedrichstr. / Braeuergasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.058993,
-          "lon": 13.72093
-        }
-      ],
-      "503": [
-        {
-          "dhid": null,
-          "name": "Fritz-Löffler-Str. 16",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.035964,
-          "lon": 13.731757
-        }
-      ],
-      "111": [
-        {
-          "dhid": null,
-          "name": "Melanchthonstr. / Hoyerswerdaer Str.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.060455,
-          "lon": 13.75262
-        }
-      ],
-      "859": [
-        {
-          "dhid": null,
-          "name": "Waltherstr. / Froebelstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.051679,
-          "lon": 13.707432
-        }
-      ],
-      "959": [
-        {
-          "dhid": null,
-          "name": "Bahnhof Mitte / Weisseritzstr.",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.055803,
-          "lon": 13.722244
-        }
-      ],
-      "1227": [
-        {
-          "dhid": null,
-          "name": "",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0622224575,
-          "lon": 13.835972625
-        }
-      ],
-      "854": [
-        {
-          "dhid": null,
-          "name": "Wernerstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.046389,
-          "lon": 13.707756
-        }
-      ],
-      "1471": [
-        {
-          "dhid": null,
-          "name": "Bürgerstraße / Harkortstraße",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.076321,
-          "lon": 13.729426
-        }
-      ],
-      "1104": [
-        {
-          "dhid": null,
-          "name": "Staufenbergallee",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.0766329,
-          "lon": 13.7555318
-        }
-      ],
-      "1404": [
-        {
-          "dhid": null,
-          "name": "Dresden Grossenhainer Strasse / Frintz-Reuter-Strasse",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.07523,
-          "lon": 13.734514
-        }
-      ],
-      "324": [
-        {
-          "dhid": null,
-          "name": "Fetscherplatz",
-          "telegram_type": "3",
-          "direction": 0,
-          "lat": 51.046367,
-          "lon": 13.770653
+          "lat": 51.053259,
+          "lon": 13.781579
         }
       ],
       "1225": [
         {
           "dhid": null,
           "name": "Elbschloesser",
-          "telegram_type": "3",
+          "telegram_type": 3,
           "direction": 0,
           "lat": 51.06597,
           "lon": 13.797705
         }
       ],
-      "302": [
+      "1194": [
         {
           "dhid": null,
-          "name": "Comeniusplatz",
-          "telegram_type": "3",
+          "name": "",
+          "telegram_type": 3,
           "direction": 0,
-          "lat": 51.0416777,
-          "lon": 13.766603
+          "lat": 51.12673785166667,
+          "lon": 13.792369016666669
+        }
+      ],
+      "1115": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.1160990425,
+          "lon": 13.78678982
+        }
+      ],
+      "347": [
+        {
+          "dhid": null,
+          "name": "Am Schillergarten / Tolkewitzer Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.050877,
+          "lon": 13.808274
+        }
+      ],
+      "854": [
+        {
+          "dhid": null,
+          "name": "Wernerstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.046389,
+          "lon": 13.707756
+        }
+      ],
+      "901": [
+        {
+          "dhid": null,
+          "name": "Weisseritzstr. / Pieschener Alle",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.060234,
+          "lon": 13.727899
+        }
+      ],
+      "201": [
+        {
+          "dhid": null,
+          "name": "St. Petersburger Straße/Pulmann-Newa",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.042306,
+          "lon": 13.736348
+        }
+      ],
+      "1123": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.09477669,
+          "lon": 13.7666500925
+        }
+      ],
+      "308": [
+        {
+          "dhid": null,
+          "name": "Zwinglistraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0340625,
+          "lon": 13.7833343
+        }
+      ],
+      "802": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04530746,
+          "lon": 13.711005065
+        }
+      ],
+      "1406": [
+        {
+          "dhid": null,
+          "name": "Liststraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.077362,
+          "lon": 13.732538
+        }
+      ],
+      "1028": [
+        {
+          "dhid": null,
+          "name": "Leipziger Str. / Moritzburger Str.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.073144,
+          "lon": 13.724901
+        }
+      ],
+      "112": [
+        {
+          "dhid": null,
+          "name": "Rosa-Luxemburg-Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.059115,
+          "lon": 13.752996
+        }
+      ],
+      "1291": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0635244525,
+          "lon": 13.822618155
+        }
+      ],
+      "328": [
+        {
+          "dhid": null,
+          "name": "Pohlandplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.042901,
+          "lon": 13.795439
+        }
+      ],
+      "878": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04998894,
+          "lon": 13.681945855
+        }
+      ],
+      "838": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.04042498,
+          "lon": 13.63026488
+        }
+      ],
+      "292": [
+        {
+          "dhid": null,
+          "name": "St. Petersburger Str. 21",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.045149,
+          "lon": 13.739975
+        }
+      ],
+      "1274": [
+        {
+          "dhid": null,
+          "name": "Bautzner Str. / Jaegerstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.066702,
+          "lon": 13.772301
+        }
+      ],
+      "200": [
+        {
+          "dhid": null,
+          "name": "Synagoge",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.052611,
+          "lon": 13.747128
+        }
+      ],
+      "1002": [
+        {
+          "dhid": null,
+          "name": "",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0652452,
+          "lon": 13.7347261
+        }
+      ],
+      "3150": [
+        {
+          "dhid": null,
+          "name": "Fetscherstraße / Fiedlerstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.05395,
+          "lon": 13.777849
+        }
+      ],
+      "951": [
+        {
+          "dhid": null,
+          "name": "Weisseritzstr. / Friedrichstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.057656,
+          "lon": 13.724963
+        }
+      ],
+      "452": [
+        {
+          "dhid": null,
+          "name": "Tiergartenstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0298346,
+          "lon": 13.771196
+        }
+      ],
+      "203": [
+        {
+          "dhid": null,
+          "name": "Pirnaischer Platz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.049434,
+          "lon": 13.744379
+        }
+      ],
+      "268": [
+        {
+          "dhid": null,
+          "name": "Albertplatz Süd",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.061454,
+          "lon": 13.746032
+        }
+      ],
+      "851": [
+        {
+          "dhid": null,
+          "name": "Löbtauer Straße/Fröbelstraße",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0500279,
+          "lon": 13.7126293
+        }
+      ],
+      "3402": [
+        {
+          "dhid": null,
+          "name": "Dresden Johannisfriedhof",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.0368414,
+          "lon": 13.8125265
+        }
+      ],
+      "346": [
+        {
+          "dhid": null,
+          "name": "Schillerplatz",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.052175,
+          "lon": 13.805205
+        }
+      ],
+      "960": [
+        {
+          "dhid": null,
+          "name": "Bahnhof Mitte / Koenneritzstr.",
+          "telegram_type": 3,
+          "direction": 0,
+          "lat": 51.055086,
+          "lon": 13.723567
         }
       ]
     }

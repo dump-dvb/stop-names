@@ -57,8 +57,8 @@ pub type RegionalTransmissionPositions = HashMap<u32, Vec<TransmissionPosition>>
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct InterRegional {
     pub document: DocumentMetaInformation,
-    pub data: HashMap<String, RegionalTransmissionPositions>,
-    pub meta: HashMap<String, RegionMetaInformation>,
+    pub data: HashMap<u32, RegionalTransmissionPositions>,
+    pub meta: HashMap<u32, RegionMetaInformation>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -90,9 +90,9 @@ impl InterRegional {
             .expect("cannot write to file!");
     }
 
-    pub fn extract(&self, region_name: &String) -> Option<Region> {
-        let data = self.data.get(region_name);
-        let meta = self.meta.get(region_name);
+    pub fn extract(&self, region_id: &u32) -> Option<Region> {
+        let data = self.data.get(region_id);
+        let meta = self.meta.get(region_id);
 
         if data.is_none() || meta.is_none() {
             return None;
@@ -106,10 +106,10 @@ impl InterRegional {
 
     pub fn look_up(
         &self,
-        region_name: &String,
+        region_id: &u32,
         traffic_light: &u32,
     ) -> Option<Vec<TransmissionPosition>> {
-        match self.data.get(region_name) {
+        match self.data.get(region_id) {
             Some(region) => {
                 return region.get(traffic_light).map(|x| x.clone());
             }
@@ -119,10 +119,10 @@ impl InterRegional {
 
     pub fn get_approximate_position(
         &self,
-        region_name: &String,
+        region_id: &u32,
         traffic_light: &u32,
     ) -> Option<TransmissionPosition> {
-        let stop_list = self.look_up(region_name, traffic_light);
+        let stop_list = self.look_up(region_id, traffic_light);
 
         match stop_list {
             Some(possbile_stations) => {

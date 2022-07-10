@@ -71,7 +71,7 @@ impl InterRegional {
     pub fn from(file: &str) -> Option<InterRegional> {
         let data = fs::read_to_string(file);
 
-        if data.is_ok() {
+        if data.is_err() {
             return None;
         }
 
@@ -219,6 +219,15 @@ impl<'de> serde::Deserialize<'de> for TelegramType {
             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
                 write!(formatter, "an integer or string representing a R09Type")
             }
+            fn visit_u64<E: serde::de::Error>(self, n: u64) -> Result<TelegramType, E> {
+                Ok(match n {
+                    0 => TelegramType::PreRegistration,
+                    1 => TelegramType::Registration,
+                    2 => TelegramType::DeRegistration,
+                    3 => TelegramType::DoorClosed,
+                    _ => return Err(E::invalid_value(serde::de::Unexpected::Unsigned(n), &self)),
+                })
+            }
 
             fn visit_str<E: serde::de::Error>(self, s: &str) -> Result<TelegramType, E> {
                 Ok(match s {
@@ -229,18 +238,7 @@ impl<'de> serde::Deserialize<'de> for TelegramType {
                     _ => return Err(E::invalid_value(serde::de::Unexpected::Str(s), &self)),
                 })
             }
-
-            fn visit_u64<E: serde::de::Error>(self, n: u64) -> Result<TelegramType, E> {
-                Ok(match n {
-                    0 => TelegramType::PreRegistration,
-                    1 => TelegramType::Registration,
-                    2 => TelegramType::DeRegistration,
-                    3 => TelegramType::DoorClosed,
-                    _ => return Err(E::invalid_value(serde::de::Unexpected::Unsigned(n), &self)),
-                })
-            }
         }
-
         deserializer.deserialize_any(TelegramTypeVisitor)
     }
 }

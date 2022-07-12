@@ -188,10 +188,10 @@ impl Serialize for R09Types {
         S: ::serde::Serializer,
     {
         // Serialize the enum as a string.
-        serializer.serialize_str(match *self {
-            R09Types::R14 => "14",
-            R09Types::R16 => "16",
-            R09Types::R18 => "18",
+        serializer.serialize_i16(match *self {
+            R09Types::R14 => 14,
+            R09Types::R16 => 16,
+            R09Types::R18 => 18,
         })
     }
 }

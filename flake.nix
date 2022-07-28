@@ -61,11 +61,12 @@
       '';
 
       packages.stops = pkgs.stdenv.mkDerivation {
-        name = "stops-json";
+        name = "stops";
         src = ./.;
         installPhase = ''
           mkdir -p $out/json
           cp stops.json $out/json/
+          cp graph.json $out/json/
         '';
       };
 

@@ -69,15 +69,14 @@
         '';
       };
 
-      defaultPackage = packages.line-info;
-
+      packages.default = packages.line-info;
       checks = packages;
 
       # `nix run`
       apps.runalyzer = utils.lib.mkApp {
         drv = packages.runalyzer;
       };
-      defaultApp = apps.runalyzer;
+      apps.default = apps.runalyzer;
 
       # `nix develop`
       devShell = pkgs.mkShell {
@@ -89,7 +88,7 @@
     }) // {
       overlays.default = final: prev: {
         inherit (self.packages.${prev.system})
-          runalyzer;
-      };
+          runalyzer stops;
+       };
     };
 }

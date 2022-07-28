@@ -59,6 +59,16 @@
         cd $out
         runalyzer
       '';
+
+      packages.stops = pkgs.stdenv.mkDerivation {
+        name = "stops-json";
+        src = ./.;
+        installPhase = ''
+          mkdir -p $out/json
+          cp stops.json $out/json/
+        '';
+      };
+
       defaultPackage = packages.line-info;
 
       checks = packages;
